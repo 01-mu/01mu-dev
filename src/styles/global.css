@@ -81,8 +81,8 @@ header .logo {
 }
 
 .logo-icon {
-  width: 28px;
-  height: 28px;
+  width: 32px;
+  height: 32px;
   border-radius: 8px;
   border: 1px solid var(--border);
   background: var(--bg-paper);

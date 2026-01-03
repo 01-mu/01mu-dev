@@ -280,19 +280,21 @@ blockquote {
 
 .home-layout {
   display: grid;
-  grid-template-columns: minmax(0, 82ch) 220px;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 82ch) 220px minmax(0, 1fr);
   gap: 2.5rem;
   align-items: start;
 }
 
 .home-content {
   min-width: 0;
+  grid-column: 2;
   background: var(--bg-paper);
   padding: 2.5rem 2.75rem 3rem;
 }
 
 .home-sidebar {
   align-self: start;
+  grid-column: 3;
 }
 
 .sidebar-divider {

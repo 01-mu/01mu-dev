@@ -94,19 +94,6 @@ main {
   letter-spacing: 0.01em;
 }
 
-.site-header--post .site-title-link {
-  color: var(--muted);
-}
-
-.site-header--post .site-nav {
-  font-size: 0.9rem;
-  color: var(--muted);
-}
-
-.site-header--post .site-nav a {
-  color: inherit;
-}
-
 .site-nav {
   display: flex;
   gap: 1rem;

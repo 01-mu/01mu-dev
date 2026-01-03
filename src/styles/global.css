@@ -230,7 +230,7 @@ blockquote {
   padding-right: 0.5rem;
 }
 
-.post-author {
+.author-card {
   display: grid;
   gap: 0.35rem;
 }
@@ -270,6 +270,21 @@ blockquote {
 .author-links svg {
   width: 16px;
   height: 16px;
+}
+
+.home-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 82ch) 220px;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+.home-content {
+  min-width: 0;
+}
+
+.home-sidebar {
+  align-self: start;
 }
 
 .sidebar-divider {
@@ -368,6 +383,14 @@ footer {
   }
 
   .post-toc {
+    display: none;
+  }
+
+  .home-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .home-sidebar {
     display: none;
   }
 

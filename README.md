@@ -11,8 +11,9 @@ minimal so the writing stays quiet and readable.
 
 ## Local Development
 ```bash
-npm install
-npm run dev
+mise install
+pnpm install
+pnpm run dev
 ```
 
 ## Writing Workflow
@@ -21,11 +22,10 @@ npm run dev
 - Drafts (`draft: true`) are excluded from production builds.
 
 ## Deployment (Cloudflare Pages GUI)
-- Build command: `npm run build`
+- Build command: `pnpm run build`
 - Output directory: `dist`
 - Production branch: `main`
-- Node version: use the default Cloudflare Pages Node LTS unless a project
-  constraint is added later.
+- Node version: match `.tool-versions` (mise).
 
 ## Domain Notes
 - Domain: `01-mu.dev`

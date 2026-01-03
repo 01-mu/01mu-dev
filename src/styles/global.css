@@ -238,13 +238,16 @@ blockquote {
   gap: 0.35rem;
 }
 
-.author-name {
-  font-weight: 600;
+.author-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg-paper);
 }
 
-.author-handle {
-  color: var(--muted);
-  font-size: 0.9rem;
+.author-name {
+  font-weight: 600;
 }
 
 .author-links {

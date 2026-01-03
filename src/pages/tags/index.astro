@@ -1,0 +1,19 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getAllTags, getVisiblePosts } from "../../utils/posts";
+
+const posts = await getVisiblePosts();
+const tags = getAllTags(posts);
+---
+
+<BaseLayout title="Tags">
+  <h1 class="page-title">Tags</h1>
+  <div class="tag-list">
+    {tags.length === 0 && <span class="prose-meta">No tags yet.</span>}
+    {tags.map(({ tag, count }) => (
+      <a class="tag-pill" href={`/tags/${encodeURIComponent(tag)}`}>
+        {tag} ({count})
+      </a>
+    ))}
+  </div>
+</BaseLayout>

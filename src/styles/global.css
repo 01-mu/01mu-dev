@@ -244,6 +244,12 @@ blockquote {
   --author-size: 100px;
 }
 
+.author-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
 .author-icon {
   width: var(--author-size);
   height: var(--author-size);
@@ -253,8 +259,7 @@ blockquote {
 }
 
 .author-meta {
-  width: var(--author-size);
-  text-align: center;
+  text-align: left;
 }
 
 .author-name {
@@ -265,7 +270,7 @@ blockquote {
   display: flex;
   gap: 0.65rem;
   margin-top: 0.35rem;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 .author-links a {

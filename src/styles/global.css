@@ -231,7 +231,7 @@ blockquote {
 }
 
 .toc {
-  max-height: calc(100vh - 7rem);
+  max-height: calc(100vh - 5.5rem);
   overflow-y: auto;
   padding-right: 0.5rem;
 }

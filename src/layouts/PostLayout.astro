@@ -1,7 +1,8 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
+import TableOfContents from "../components/TableOfContents.astro";
 
-const { title, date, tags = [], description } = Astro.props;
+const { title, date, tags = [], description, headings = [] } = Astro.props;
 const formattedDate = new Date(date).toLocaleDateString("en-US", {
   year: "numeric",
   month: "long",
@@ -10,16 +11,21 @@ const formattedDate = new Date(date).toLocaleDateString("en-US", {
 ---
 
 <BaseLayout title={title} description={description}>
-  <article>
-    <p class="prose-meta">{formattedDate}</p>
-    <h1 class="page-title">{title}</h1>
-    {tags.length > 0 && (
-      <div class="tag-list">
-        {tags.map((tag) => (
-          <a class="tag-pill" href={`/tags/${encodeURIComponent(tag)}`}>{tag}</a>
-        ))}
-      </div>
-    )}
-    <slot />
-  </article>
+  <div class="post-layout">
+    <article class="post-content">
+      <p class="prose-meta">{formattedDate}</p>
+      <h1 class="page-title">{title}</h1>
+      {tags.length > 0 && (
+        <div class="tag-list">
+          {tags.map((tag) => (
+            <a class="tag-pill" href={`/tags/${encodeURIComponent(tag)}`}>{tag}</a>
+          ))}
+        </div>
+      )}
+      <slot />
+    </article>
+    <aside class="post-toc">
+      <TableOfContents headings={headings} />
+    </aside>
+  </div>
 </BaseLayout>

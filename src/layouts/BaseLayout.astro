@@ -1,7 +1,7 @@
 ---
 import "../styles/global.css";
 
-const { title, description, mainClass = "" } = Astro.props;
+const { title, description, mainClass = "", headerClass = "" } = Astro.props;
 const pageTitle = title ? `${title} · 01-mu` : "01-mu";
 ---
 
@@ -22,18 +22,20 @@ const pageTitle = title ? `${title} · 01-mu` : "01-mu";
     />
   </head>
   <body>
-    <header>
-      <div class="logo">
-        <a href="/" class="logo-link">
-          <img src="/mu-icon.png" alt="" class="logo-icon" />
-          <span>01-mu</span>
-        </a>
+    <header class={headerClass}>
+      <div class="header-inner">
+        <div class="logo">
+          <a href="/" class="logo-link">
+            <img src="/mu-icon.png" alt="" class="logo-icon" />
+            <span>01-mu</span>
+          </a>
+        </div>
+        <nav>
+          <a href="/">Home</a>
+          <a href="/about">About</a>
+          <a href="/tags">Tags</a>
+        </nav>
       </div>
-      <nav>
-        <a href="/">Home</a>
-        <a href="/about">About</a>
-        <a href="/tags">Tags</a>
-      </nav>
     </header>
     <main class={mainClass}>
       <slot />

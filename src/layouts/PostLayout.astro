@@ -10,7 +10,12 @@ const formattedDate = new Date(date).toLocaleDateString("en-US", {
 });
 ---
 
-<BaseLayout title={title} description={description} mainClass="main--post">
+<BaseLayout
+  title={title}
+  description={description}
+  mainClass="main--post"
+  headerClass="header--post"
+>
   <div class="post-layout">
     <article class="post-content">
       <p class="prose-meta">{formattedDate}</p>

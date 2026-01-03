@@ -61,9 +61,12 @@ main {
 }
 
 header {
+  padding: 1.5rem 0 0;
+}
+
+header .header-inner {
   margin: 0 auto;
   max-width: 76ch;
-  padding: 1.5rem 0 0;
   display: flex;
   align-items: baseline;
   justify-content: space-between;
@@ -74,6 +77,25 @@ header nav {
   display: flex;
   gap: 1rem;
   font-size: 0.95rem;
+}
+
+.header--post .header-inner {
+  max-width: none;
+  width: 100%;
+  padding: 0 1.5rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 76ch) 220px minmax(0, 1fr);
+  gap: 2.5rem;
+  align-items: baseline;
+}
+
+.header--post .logo {
+  grid-column: 2;
+}
+
+.header--post nav {
+  grid-column: 3;
+  justify-content: flex-end;
 }
 
 header .logo {
@@ -267,6 +289,21 @@ footer {
 @media (max-width: 720px) {
   main {
     padding: 2.5rem 1.25rem 3.5rem;
+  }
+
+  header {
+    padding: 1.25rem 0 0;
+  }
+
+  header .header-inner {
+    padding: 0 1.25rem;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .header--post .header-inner {
+    display: flex;
+    padding: 0 1.25rem;
   }
 
   .post-layout {

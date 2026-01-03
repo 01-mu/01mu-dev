@@ -53,6 +53,11 @@ main {
   min-height: 70vh;
 }
 
+.main--post {
+  max-width: 1100px;
+  background: transparent;
+}
+
 header {
   margin: 0 auto;
   max-width: 76ch;
@@ -172,13 +177,15 @@ blockquote {
 
 .post-layout {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 220px;
-  gap: 2.5rem;
+  grid-template-columns: minmax(0, 76ch) 220px;
+  gap: 2.75rem;
   align-items: start;
 }
 
 .post-content {
   min-width: 0;
+  background: var(--bg-paper);
+  padding: 2.5rem 2.75rem 3rem;
 }
 
 .post-toc {
@@ -260,6 +267,10 @@ footer {
 
   .post-layout {
     grid-template-columns: minmax(0, 1fr);
+  }
+
+  .post-content {
+    padding: 2rem 1.5rem 2.5rem;
   }
 
   .post-toc {

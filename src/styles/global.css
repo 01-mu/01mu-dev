@@ -59,6 +59,12 @@ main {
   padding: 1.5rem 0 4.5rem;
 }
 
+.main--home {
+  max-width: none;
+  background: transparent;
+  padding: 1.5rem 0 4.5rem;
+}
+
 .site-header {
   width: 100%;
   max-width: none;
@@ -287,6 +293,15 @@ blockquote {
   align-self: start;
 }
 
+.home-card {
+  background: var(--bg-paper);
+  padding: 2.5rem 2.75rem 3rem;
+}
+
+.home-card--sidebar {
+  padding: 1.75rem 1.75rem 2rem;
+}
+
 .sidebar-divider {
   height: 1px;
   background: var(--border);
@@ -369,6 +384,10 @@ footer {
     padding: 2.5rem 0 3.5rem;
   }
 
+  .main--home {
+    padding: 2.5rem 0 3.5rem;
+  }
+
   .post-layout {
     grid-template-columns: minmax(0, 1fr);
   }
@@ -392,6 +411,10 @@ footer {
 
   .home-sidebar {
     display: none;
+  }
+
+  .home-card {
+    padding: 2rem 1.5rem 2.5rem;
   }
 
   .site-header {

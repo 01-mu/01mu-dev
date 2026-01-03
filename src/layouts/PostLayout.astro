@@ -10,12 +10,7 @@ const formattedDate = new Date(date).toLocaleDateString("en-US", {
 });
 ---
 
-<BaseLayout
-  title={title}
-  description={description}
-  mainClass="main--post"
-  headerClass="header--post"
->
+<BaseLayout title={title} description={description} mainClass="main--post">
   <div class="post-layout">
     <article class="post-content">
       <p class="prose-meta">{formattedDate}</p>
@@ -30,6 +25,15 @@ const formattedDate = new Date(date).toLocaleDateString("en-US", {
       <slot />
     </article>
     <aside class="post-toc">
+      <div class="post-intro">
+        <div class="logo">
+          <a href="/" class="logo-link">
+            <img src="/mu-icon.png" alt="" class="logo-icon" />
+            <span>01-mu</span>
+          </a>
+        </div>
+        <p class="prose-meta">Quiet notes for long-form thinking.</p>
+      </div>
       <TableOfContents headings={headings} />
     </aside>
   </div>

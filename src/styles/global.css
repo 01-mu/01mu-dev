@@ -60,42 +60,17 @@ main {
   padding-right: 1.5rem;
 }
 
-header {
-  padding: 1.5rem 0 0;
-}
-
-header .header-inner {
-  margin: 0 auto;
-  max-width: 76ch;
+.site-header {
+  width: 100%;
+  padding: 1.5rem 1.5rem 0;
   display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 1rem;
+  justify-content: flex-end;
 }
 
-header nav {
+.site-nav {
   display: flex;
   gap: 1rem;
   font-size: 0.95rem;
-}
-
-.header--post .header-inner {
-  max-width: none;
-  width: 100%;
-  padding: 0 1.5rem;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 76ch) 220px minmax(0, 1fr);
-  gap: 2.5rem;
-  align-items: baseline;
-}
-
-.header--post .logo {
-  grid-column: 2;
-}
-
-.header--post nav {
-  grid-column: 3;
-  justify-content: flex-end;
 }
 
 header .logo {
@@ -220,6 +195,14 @@ blockquote {
   grid-column: 3;
 }
 
+.post-intro {
+  margin-bottom: 1.75rem;
+}
+
+.post-intro .logo {
+  margin-bottom: 0.5rem;
+}
+
 .toc-title {
   font-size: 0.85rem;
   letter-spacing: 0.04em;
@@ -292,18 +275,12 @@ footer {
   }
 
   header {
-    padding: 1.25rem 0 0;
+    padding: 1.25rem 1.25rem 0;
   }
 
-  header .header-inner {
-    padding: 0 1.25rem;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .header--post .header-inner {
-    display: flex;
-    padding: 0 1.25rem;
+  .site-nav {
+    flex-wrap: wrap;
+    justify-content: flex-start;
   }
 
   .post-layout {

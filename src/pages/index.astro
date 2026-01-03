@@ -8,7 +8,7 @@ const posts = await getVisiblePosts();
 
 <BaseLayout description="Quiet notes for long-form thinking." mainClass="main--home">
   <div class="home-layout">
-    <section class="home-content home-card">
+    <section class="home-content">
       <h1 class="page-title">Latest writing</h1>
       {posts.length === 0 ? (
         <p class="prose-meta">No published posts yet.</p>
@@ -36,9 +36,7 @@ const posts = await getVisiblePosts();
       )}
     </section>
     <aside class="home-sidebar">
-      <div class="home-card home-card--sidebar">
-        <AuthorCard />
-      </div>
+      <AuthorCard />
     </aside>
   </div>
 </BaseLayout>

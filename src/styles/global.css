@@ -287,19 +287,12 @@ blockquote {
 
 .home-content {
   min-width: 0;
-}
-
-.home-sidebar {
-  align-self: start;
-}
-
-.home-card {
   background: var(--bg-paper);
   padding: 2.5rem 2.75rem 3rem;
 }
 
-.home-card--sidebar {
-  padding: 1.75rem 1.75rem 2rem;
+.home-sidebar {
+  align-self: start;
 }
 
 .sidebar-divider {
@@ -413,7 +406,7 @@ footer {
     display: none;
   }
 
-  .home-card {
+  .home-content {
     padding: 2rem 1.5rem 2.5rem;
   }
 

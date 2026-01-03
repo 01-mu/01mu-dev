@@ -10,7 +10,12 @@ const formattedDate = new Date(date).toLocaleDateString("en-US", {
 });
 ---
 
-<BaseLayout title={title} description={description} mainClass="main--post">
+<BaseLayout
+  title={title}
+  description={description}
+  mainClass="main--post"
+  headerVariant="post"
+>
   <div class="post-layout">
     <article class="post-content">
       <p class="prose-meta">{formattedDate}</p>
@@ -25,15 +30,55 @@ const formattedDate = new Date(date).toLocaleDateString("en-US", {
       <slot />
     </article>
     <aside class="post-toc">
-      <div class="post-intro">
-        <div class="logo">
-          <a href="/" class="logo-link">
-            <img src="/mu-icon.png" alt="" class="logo-icon" />
-            <span>01-mu</span>
+      <div class="post-author">
+        <div class="author-name">01-mu</div>
+        <div class="author-handle">@01mu_dev</div>
+        <div class="author-links">
+          <a
+            href="https://x.com/01mu_dev"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="X"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M4 4l16 16M20 4L4 20"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.6"
+                stroke-linecap="round"
+              />
+            </svg>
+          </a>
+          <a
+            href="https://github.com/01mu-dev"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                fill="currentColor"
+                d="M12 2.2a9.8 9.8 0 0 0-3.1 19.1c.5.1.7-.2.7-.5v-1.8c-2.8.6-3.4-1.2-3.4-1.2-.4-1.1-1.1-1.4-1.1-1.4-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.5 1.1 3.1.8.1-.6.4-1.1.7-1.3-2.2-.3-4.5-1.1-4.5-5a3.9 3.9 0 0 1 1-2.7c-.1-.2-.4-1.2.1-2.5 0 0 .9-.3 2.8 1a9.6 9.6 0 0 1 5.1 0c1.9-1.3 2.8-1 2.8-1 .5 1.3.2 2.3.1 2.5a3.9 3.9 0 0 1 1 2.7c0 4-2.3 4.7-4.5 5 .4.3.8 1 .8 2.1v3.1c0 .3.2.6.7.5A9.8 9.8 0 0 0 12 2.2Z"
+              />
+            </svg>
+          </a>
+          <a
+            href="https://zenn.dev/01mu"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Zenn"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                fill="currentColor"
+                d="M4 6h16l-9.4 12H4l9.4-12H4Z"
+              />
+            </svg>
           </a>
         </div>
-        <p class="prose-meta">Quiet notes for long-form thinking.</p>
       </div>
+      <div class="sidebar-divider" aria-hidden="true"></div>
       <TableOfContents headings={headings} />
     </aside>
   </div>

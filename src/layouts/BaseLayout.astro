@@ -1,7 +1,12 @@
 ---
 import "../styles/global.css";
 
-const { title, description, mainClass = "" } = Astro.props;
+const {
+  title,
+  description,
+  mainClass = "",
+  headerVariant = "default",
+} = Astro.props;
 const pageTitle = title ? `${title} · 01-mu` : "01-mu";
 ---
 
@@ -22,11 +27,15 @@ const pageTitle = title ? `${title} · 01-mu` : "01-mu";
     />
   </head>
   <body>
-    <header class="site-header">
-      <div class="site-brand">
-        <div class="site-title">In Context</div>
-        <div class="site-tagline">Notes on building and thinking.</div>
-      </div>
+    <header class={`site-header site-header--${headerVariant}`}>
+      {headerVariant === "default" ? (
+        <div class="site-brand">
+          <div class="site-title">In Context</div>
+          <div class="site-tagline">Notes on building and thinking.</div>
+        </div>
+      ) : (
+        <a href="/" class="site-title-link">In Context</a>
+      )}
       <nav class="site-nav">
         <a href="/">Home</a>
         <a href="/about">About</a>

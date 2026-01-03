@@ -86,6 +86,25 @@ main {
   color: var(--muted);
 }
 
+.site-title-link {
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.site-header--post .site-title-link {
+  color: var(--muted);
+}
+
+.site-header--post .site-nav {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.site-header--post .site-nav a {
+  color: inherit;
+}
+
 .site-nav {
   display: flex;
   gap: 1rem;
@@ -214,13 +233,51 @@ blockquote {
   grid-column: 3;
 }
 
-.post-intro {
-  margin-bottom: 1.75rem;
+.post-author {
+  display: grid;
+  gap: 0.35rem;
 }
 
-.post-intro .logo {
-  margin-bottom: 0.5rem;
+.author-name {
+  font-weight: 600;
 }
+
+.author-handle {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.author-links {
+  display: flex;
+  gap: 0.65rem;
+  margin-top: 0.35rem;
+}
+
+.author-links a {
+  width: 18px;
+  height: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  transition: color 160ms ease;
+}
+
+.author-links a:hover {
+  color: var(--ink);
+}
+
+.author-links svg {
+  width: 16px;
+  height: 16px;
+}
+
+.sidebar-divider {
+  height: 1px;
+  background: var(--border);
+  margin: 1.5rem 0 1.25rem;
+}
+
 
 .toc-title {
   font-size: 0.85rem;

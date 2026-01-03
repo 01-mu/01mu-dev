@@ -239,16 +239,22 @@ blockquote {
 .author-card {
   display: grid;
   gap: 0.35rem;
-  justify-items: center;
-  text-align: center;
+  justify-items: start;
+  text-align: left;
+  --author-size: 100px;
 }
 
 .author-icon {
-  width: 100px;
-  height: 100px;
+  width: var(--author-size);
+  height: var(--author-size);
   border-radius: 8px;
   border: 1px solid var(--border);
   background: var(--bg-paper);
+}
+
+.author-meta {
+  width: var(--author-size);
+  text-align: center;
 }
 
 .author-name {

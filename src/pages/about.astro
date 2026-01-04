@@ -1,18 +1,26 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import AuthorCard from "../components/AuthorCard.astro";
 ---
 
-<BaseLayout title="About">
-  <div class="about-icon" aria-hidden="true">01</div>
-  <h1 class="page-title">About</h1>
-  <p>
-    I write in English to slow down my thinking and leave room for nuance. This
-    space is for long-form notes, reflections, and careful observations.
-  </p>
-  <p>
-    The goal is simple: a quiet place where the writing can breathe, without
-    distractions or urgency.
-  </p>
+<BaseLayout title="About" mainClass="main--home">
+  <div class="home-layout">
+    <section class="home-content">
+      <div class="about-icon" aria-hidden="true">01</div>
+      <h1 class="page-title">About</h1>
+      <p>
+        I write in English to slow down my thinking and leave room for nuance. This
+        space is for long-form notes, reflections, and careful observations.
+      </p>
+      <p>
+        The goal is simple: a quiet place where the writing can breathe, without
+        distractions or urgency.
+      </p>
+    </section>
+    <aside class="home-sidebar">
+      <AuthorCard />
+    </aside>
+  </div>
 </BaseLayout>
 
 <style>
@@ -25,5 +33,39 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     place-items: center;
     font-weight: 600;
     margin-bottom: 1.5rem;
+  }
+
+  .home-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 82ch) 220px minmax(0, 1fr);
+    gap: 2.5rem;
+    align-items: start;
+  }
+
+  .home-content {
+    min-width: 0;
+    grid-column: 2;
+    background: var(--bg-paper);
+    padding: 2.5rem 2.75rem 2.6rem;
+  }
+
+  .home-sidebar {
+    align-self: start;
+    grid-column: 3;
+  }
+
+  @media (max-width: 720px) {
+    .home-layout {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .home-sidebar {
+      display: block;
+    }
+
+    .home-content {
+      grid-column: auto;
+      padding: 2rem 1.5rem 2.25rem;
+    }
   }
 </style>

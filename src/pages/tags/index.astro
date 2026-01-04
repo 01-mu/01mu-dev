@@ -1,19 +1,63 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import AuthorCard from "../../components/AuthorCard.astro";
 import { getAllTags, getVisiblePosts } from "../../utils/posts";
 
 const posts = await getVisiblePosts();
 const tags = getAllTags(posts);
 ---
 
-<BaseLayout title="Tags">
-  <h1 class="page-title">Tags</h1>
-  <div class="tag-list">
-    {tags.length === 0 && <span class="prose-meta">No tags yet.</span>}
-    {tags.map(({ tag, count }) => (
-      <a class="tag-pill" href={`/tags/${encodeURIComponent(tag)}`}>
-        {tag} ({count})
-      </a>
-    ))}
+<BaseLayout title="Tags" mainClass="main--home">
+  <div class="home-layout">
+    <section class="home-content">
+      <h1 class="page-title">Tags</h1>
+      <div class="tag-list">
+        {tags.length === 0 && <span class="prose-meta">No tags yet.</span>}
+        {tags.map(({ tag, count }) => (
+          <a class="tag-pill" href={`/tags/${encodeURIComponent(tag)}`}>
+            {tag} ({count})
+          </a>
+        ))}
+      </div>
+    </section>
+    <aside class="home-sidebar">
+      <AuthorCard />
+    </aside>
   </div>
 </BaseLayout>
+
+<style>
+  .home-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 82ch) 220px minmax(0, 1fr);
+    gap: 2.5rem;
+    align-items: start;
+  }
+
+  .home-content {
+    min-width: 0;
+    grid-column: 2;
+    background: var(--bg-paper);
+    padding: 2.5rem 2.75rem 2.6rem;
+  }
+
+  .home-sidebar {
+    align-self: start;
+    grid-column: 3;
+  }
+
+  @media (max-width: 720px) {
+    .home-layout {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .home-sidebar {
+      display: block;
+    }
+
+    .home-content {
+      grid-column: auto;
+      padding: 2rem 1.5rem 2.25rem;
+    }
+  }
+</style>

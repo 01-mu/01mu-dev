@@ -1,7 +1,9 @@
 import { defineConfig } from "@playwright/test";
 
 export default defineConfig({
-  testDir: "./tests",
+  testDir: "./e2e",
+  outputDir: "e2e/output",
+  snapshotPathTemplate: "e2e/snapshots/{testFilePath}/{arg}{ext}",
   use: {
     baseURL: "http://localhost:4321",
     viewport: { width: 1280, height: 720 },

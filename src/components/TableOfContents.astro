@@ -38,6 +38,7 @@ const visibleHeadings = headings.filter((heading) =>
       return;
     }
     const tocContainer = root.querySelector(".toc");
+    let scrollContainer = tocContainer;
     const links = Array.from(
       root.querySelectorAll("[data-toc-link]"),
     );
@@ -51,13 +52,23 @@ const visibleHeadings = headings.filter((heading) =>
 
     root.dataset.tocInitialized = "true";
 
+    if (
+      scrollContainer &&
+      scrollContainer.scrollHeight <= scrollContainer.clientHeight
+    ) {
+      const panel = root.closest(".toc-panel");
+      if (panel instanceof HTMLElement) {
+        scrollContainer = panel;
+      }
+    }
+
     let lastActiveIndex = -1;
     let scrollAnimId = null;
     const smoothScrollTo = (targetTop) => {
       if (scrollAnimId) {
         cancelAnimationFrame(scrollAnimId);
       }
-      const startTop = tocContainer.scrollTop;
+      const startTop = scrollContainer.scrollTop;
       const delta = targetTop - startTop;
       const duration = 420;
       const startTime = performance.now();
@@ -65,7 +76,7 @@ const visibleHeadings = headings.filter((heading) =>
       const step = (now) => {
         const t = Math.min(1, (now - startTime) / duration);
         const eased = 1 - Math.pow(1 - t, 4);
-        tocContainer.scrollTop = startTop + delta * eased;
+        scrollContainer.scrollTop = startTop + delta * eased;
         if (t < 1) {
           scrollAnimId = requestAnimationFrame(step);
         } else {
@@ -84,19 +95,19 @@ const visibleHeadings = headings.filter((heading) =>
 
       if (activeIndex !== lastActiveIndex) {
         const activeLink = links[activeIndex];
-        if (tocContainer && activeLink) {
-          const containerRect = tocContainer.getBoundingClientRect();
+        if (scrollContainer && activeLink) {
+          const containerRect = scrollContainer.getBoundingClientRect();
           const linkRect = activeLink.getBoundingClientRect();
           const topEdge = containerRect.top + pad;
           const bottomEdge = containerRect.bottom - pad;
 
           if (linkRect.top < topEdge) {
             smoothScrollTo(
-              tocContainer.scrollTop - (topEdge - linkRect.top),
+              scrollContainer.scrollTop - (topEdge - linkRect.top),
             );
           } else if (linkRect.bottom > bottomEdge) {
             smoothScrollTo(
-              tocContainer.scrollTop + (linkRect.bottom - bottomEdge),
+              scrollContainer.scrollTop + (linkRect.bottom - bottomEdge),
             );
           }
         }

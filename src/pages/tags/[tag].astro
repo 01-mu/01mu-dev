@@ -1,6 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import AuthorCard from "../../components/AuthorCard.astro";
+import Sidebar from "../../components/Sidebar.astro";
 import { getAllTags, getVisiblePosts } from "../../utils/posts";
 
 export async function getStaticPaths() {
@@ -38,9 +38,7 @@ const taggedPosts = posts.filter((post) => post.data.tags.includes(tag));
         </ul>
       )}
     </section>
-    <aside class="home-sidebar">
-      <AuthorCard />
-    </aside>
+    <Sidebar />
   </div>
 </BaseLayout>
 
@@ -81,25 +79,12 @@ const taggedPosts = posts.filter((post) => post.data.tags.includes(tag));
     padding: 2.5rem 2.75rem 2.6rem;
   }
 
-  .home-sidebar {
-    align-self: start;
-    grid-column: 3;
-  }
 
   @media (max-width: 720px) {
     .home-layout {
       grid-template-columns: minmax(0, 1fr);
       display: flex;
       flex-direction: column;
-    }
-
-    .home-sidebar {
-      width: 100%;
-      display: block;
-      order: 2;
-      margin-top: 1.5rem;
-      display: flex;
-      justify-content: center;
     }
 
     .home-content {

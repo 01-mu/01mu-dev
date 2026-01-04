@@ -28,9 +28,8 @@ const visibleHeadings = headings.filter((heading) =>
 )}
 
 <script type="module">
-  const initToc = () => {
-    const root = document.currentScript?.closest(".toc-root");
-    if (!root) {
+  const initRoot = (root) => {
+    if (!root || root.dataset.tocInitialized === "true") {
       return;
     }
     const isInline = Boolean(root.closest(".toc-inline"));
@@ -49,6 +48,8 @@ const visibleHeadings = headings.filter((heading) =>
     if (links.length === 0 || headings.length === 0) {
       return;
     }
+
+    root.dataset.tocInitialized = "true";
 
     let lastActiveIndex = -1;
     let scrollAnimId = null;
@@ -144,7 +145,7 @@ const visibleHeadings = headings.filter((heading) =>
     updateActive();
   };
 
-  initToc();
+  document.querySelectorAll(".toc-root").forEach(initRoot);
 </script>
 
 <style>

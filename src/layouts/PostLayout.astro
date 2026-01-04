@@ -56,6 +56,12 @@ const formattedDate = new Date(date).toLocaleDateString("en-US", {
     </aside>
   </div>
   <button class="toc-toggle" type="button" aria-controls="mobile-toc-panel" aria-expanded="false">
+    <svg viewBox="0 0 24 24" aria-hidden="true" class="toc-icon">
+      <path
+        fill="currentColor"
+        d="M4 6.5h16v2H4v-2Zm0 5h10v2H4v-2Zm0 5h13v2H4v-2Z"
+      />
+    </svg>
     Contents
   </button>
 </BaseLayout>
@@ -131,6 +137,10 @@ const formattedDate = new Date(date).toLocaleDateString("en-US", {
       position: static;
     }
 
+    .tag-card {
+      display: none;
+    }
+
     .toc-panel {
       position: fixed;
       display: none;
@@ -162,6 +172,11 @@ const formattedDate = new Date(date).toLocaleDateString("en-US", {
 
   .toc-inline {
     display: block;
+  }
+
+  .toc-icon {
+    width: 16px;
+    height: 16px;
   }
 
   .toc-toggle {

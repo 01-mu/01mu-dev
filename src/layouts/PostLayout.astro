@@ -3,7 +3,14 @@ import BaseLayout from "./BaseLayout.astro";
 import TableOfContents from "../components/TableOfContents.astro";
 import AuthorCard from "../components/AuthorCard.astro";
 
-const { title, date, tags = [], description, headings = [] } = Astro.props;
+const {
+  title,
+  date,
+  tags = [],
+  description,
+  headings = [],
+  tagCounts = {},
+} = Astro.props;
 const formattedDate = new Date(date).toLocaleDateString("en-US", {
   year: "numeric",
   month: "long",
@@ -27,8 +34,79 @@ const formattedDate = new Date(date).toLocaleDateString("en-US", {
     </article>
     <aside class="post-toc">
       <AuthorCard />
+      {tags.length > 0 && (
+        <div class="tag-card">
+          <p class="tag-card-title">Tags</p>
+          <div class="tag-list">
+            {tags.map((tag) => (
+              <a class="tag-pill" href={`/tags/${encodeURIComponent(tag)}`}>
+                {tag} {tagCounts[tag] ? `(${tagCounts[tag]})` : ""}
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
       <div class="sidebar-divider" aria-hidden="true"></div>
       <TableOfContents headings={headings} />
     </aside>
   </div>
 </BaseLayout>
+
+<style>
+  .post-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 82ch) 220px minmax(0, 1fr);
+    gap: 2.5rem;
+    align-items: start;
+  }
+
+  .post-content {
+    min-width: 0;
+    grid-column: 2;
+    background: var(--bg-paper);
+    padding: 2.5rem 2.75rem 2.6rem;
+  }
+
+  .post-toc {
+    position: sticky;
+    top: 5.5rem;
+    align-self: start;
+    grid-column: 3;
+  }
+
+  .sidebar-divider {
+    height: 1px;
+    background: var(--border);
+    margin: 1.5rem 0 1.25rem;
+  }
+
+  .tag-card {
+    margin-top: 1.2rem;
+    display: grid;
+    gap: 0.5rem;
+  }
+
+  .tag-card-title {
+    font-size: 0.8rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 0;
+  }
+
+  @media (max-width: 720px) {
+    .post-layout {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .post-content {
+      grid-column: auto;
+      padding: 2rem 1.5rem 2.25rem;
+    }
+
+    .post-toc {
+      grid-column: auto;
+      display: none;
+    }
+  }
+</style>

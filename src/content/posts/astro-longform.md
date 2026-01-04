@@ -1,10 +1,13 @@
 ---
-title: "Building Calm Long-Form Pages with Astro"
+title: "Test: Building Calm Long-Form Pages with Astro"
 date: 2025-03-05
 tags: ["astro", "writing", "architecture"]
 description: "A long-form technical walkthrough for shaping quiet reading experiences in Astro."
 draft: false
 ---
+<p><span style="color: #c0392b; font-size: 1.1rem; font-weight: 600;">Test</span></p>
+
+<p><span style="color: #c0392b;">This article is AI-generated placeholder content.</span></p>
 
 Astro is a good fit for long-form writing because it defaults to static output
 and encourages a content-first structure. You can build pages that feel like

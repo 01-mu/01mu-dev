@@ -47,9 +47,17 @@ const formattedDate = new Date(date).toLocaleDateString("en-US", {
         </div>
       )}
       <div class="sidebar-divider" aria-hidden="true"></div>
-      <TableOfContents headings={headings} />
+      <div class="toc-panel" id="mobile-toc-panel">
+        <TableOfContents headings={headings} />
+      </div>
+      <div class="toc-inline">
+        <TableOfContents headings={headings} />
+      </div>
     </aside>
   </div>
+  <button class="toc-toggle" type="button" aria-controls="mobile-toc-panel" aria-expanded="false">
+    Contents
+  </button>
 </BaseLayout>
 
 <style>
@@ -72,6 +80,16 @@ const formattedDate = new Date(date).toLocaleDateString("en-US", {
     top: 5.5rem;
     align-self: start;
     grid-column: 3;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .toc-panel {
+    display: none;
+  }
+
+  .toc-toggle {
+    display: none;
   }
 
   .sidebar-divider {
@@ -96,17 +114,92 @@ const formattedDate = new Date(date).toLocaleDateString("en-US", {
 
   @media (max-width: 720px) {
     .post-layout {
-      grid-template-columns: minmax(0, 1fr);
+      display: flex;
+      flex-direction: column;
     }
 
     .post-content {
       grid-column: auto;
+      order: 1;
       padding: 2rem 1.5rem 2.25rem;
     }
 
     .post-toc {
       grid-column: auto;
+      order: 2;
+      margin-top: 1.5rem;
+      position: static;
+    }
+
+    .toc-panel {
+      position: fixed;
+      display: none;
+      top: 4.5rem;
+      right: 1rem;
+      left: 1rem;
+      max-height: 60vh;
+      overflow: auto;
+      background: var(--bg-paper);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem;
+      box-shadow: 0 12px 30px rgba(28, 42, 51, 0.15);
+      z-index: 20;
+    }
+
+    .toc-toggle {
+      display: inline-flex;
+    }
+
+    :global(body.toc-open) .toc-panel {
+      display: block;
+    }
+
+    .toc-inline {
       display: none;
     }
   }
+
+  .toc-inline {
+    display: block;
+  }
+
+  .toc-toggle {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 21;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.45rem 0.75rem;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: var(--bg-paper);
+    color: var(--ink);
+    font-size: 0.85rem;
+  }
 </style>
+
+<script>
+  const toggle = document.querySelector(".toc-toggle");
+  const panel = document.querySelector("#mobile-toc-panel");
+
+  if (toggle && panel) {
+    const update = (open) => {
+      document.body.classList.toggle("toc-open", open);
+      toggle.setAttribute("aria-expanded", open ? "true" : "false");
+    };
+
+    toggle.addEventListener("click", () => {
+      const open = document.body.classList.contains("toc-open");
+      update(!open);
+    });
+
+    panel.addEventListener("click", (event) => {
+      const target = event.target;
+      if (target instanceof Element && target.closest("[data-toc-link]")) {
+        update(false);
+      }
+    });
+  }
+</script>

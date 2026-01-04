@@ -41,7 +41,7 @@ const tags = getAllTags(posts);
       {tags.length > 0 && (
         <>
           <div class="sidebar-divider" aria-hidden="true"></div>
-          <div class="tag-card">
+          <div class="tag-card home-tag-card">
             <p class="tag-card-title">Tags</p>
             <div class="tag-list">
               {tags.map(({ tag, count }) => (
@@ -130,6 +130,10 @@ const tags = getAllTags(posts);
       display: block;
       order: 2;
       margin-top: 1.5rem;
+    }
+
+    .home-tag-card {
+      display: none;
     }
 
     .home-content {

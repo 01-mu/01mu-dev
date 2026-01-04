@@ -127,4 +127,26 @@ const {
     width: 20px;
     height: 20px;
   }
+
+  @media (max-width: 720px) {
+    .author-card {
+      margin-inline: auto;
+      min-width: 240px;
+      width: fit-content;
+      align-self: center;
+    }
+
+    .author-header {
+      flex-direction: row;
+      align-items: center;
+    }
+
+    .author-meta {
+      text-align: left;
+    }
+
+    .author-links {
+      justify-content: flex-start;
+    }
+  }
 </style>

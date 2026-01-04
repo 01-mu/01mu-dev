@@ -23,29 +23,35 @@ const formattedDate = new Date(date).toLocaleDateString("en-US", {
     <article class="post-content">
       <p class="prose-meta">{formattedDate}</p>
       <h1 class="page-title">{title}</h1>
-      {tags.length > 0 && (
-        <div class="tag-list">
-          {tags.map((tag) => (
-            <a class="tag-pill" href={`/tags/${encodeURIComponent(tag)}`}>{tag}</a>
-          ))}
-        </div>
-      )}
-      <slot />
-    </article>
-    <aside class="post-toc">
-      <AuthorCard />
-      {tags.length > 0 && (
-        <div class="tag-card">
-          <p class="tag-card-title">Tags</p>
+      {
+        tags.length > 0 && (
           <div class="tag-list">
             {tags.map((tag) => (
               <a class="tag-pill" href={`/tags/${encodeURIComponent(tag)}`}>
-                {tag} {tagCounts[tag] ? `(${tagCounts[tag]})` : ""}
+                {tag}
               </a>
             ))}
           </div>
-        </div>
-      )}
+        )
+      }
+      <slot />
+    </article>
+    <aside class="home-sidebar">
+      <AuthorCard />
+      {
+        tags.length > 0 && (
+          <div class="tag-card">
+            <p class="tag-card-title">Tags</p>
+            <div class="tag-list">
+              {tags.map((tag) => (
+                <a class="tag-pill" href={`/tags/${encodeURIComponent(tag)}`}>
+                  {tag} {tagCounts[tag] ? `(${tagCounts[tag]})` : ""}
+                </a>
+              ))}
+            </div>
+          </div>
+        )
+      }
       <div class="sidebar-divider" aria-hidden="true"></div>
       <div class="toc-panel" id="mobile-toc-panel">
         <TableOfContents headings={headings} />
@@ -55,12 +61,16 @@ const formattedDate = new Date(date).toLocaleDateString("en-US", {
       </div>
     </aside>
   </div>
-  <button class="toc-toggle" type="button" aria-controls="mobile-toc-panel" aria-expanded="false">
+  <button
+    class="toc-toggle"
+    type="button"
+    aria-controls="mobile-toc-panel"
+    aria-expanded="false"
+  >
     <svg viewBox="0 0 24 24" aria-hidden="true" class="toc-icon">
       <path
         fill="currentColor"
-        d="M4 6.5h16v2H4v-2Zm0 5h10v2H4v-2Zm0 5h13v2H4v-2Z"
-      />
+        d="M4 6.5h16v2H4v-2Zm0 5h10v2H4v-2Zm0 5h13v2H4v-2Z"></path>
     </svg>
     Contents
   </button>
@@ -81,7 +91,7 @@ const formattedDate = new Date(date).toLocaleDateString("en-US", {
     padding: 2.5rem 2.75rem 2.6rem;
   }
 
-  .post-toc {
+  .home-sidebar {
     position: sticky;
     top: 5.5rem;
     align-self: start;
@@ -130,14 +140,20 @@ const formattedDate = new Date(date).toLocaleDateString("en-US", {
       padding: 2rem 1.5rem 2.25rem;
     }
 
-    .post-toc {
+    .home-sidebar {
+      width: 100%;
       grid-column: auto;
       order: 2;
       margin-top: 1.5rem;
       position: static;
+      align-items: center;
     }
 
     .tag-card {
+      display: none;
+    }
+
+    .sidebar-divider {
       display: none;
     }
 
@@ -169,7 +185,7 @@ const formattedDate = new Date(date).toLocaleDateString("en-US", {
       display: none;
     }
 
-    .post-toc .toc-inline {
+    .home-sidebar .toc-inline {
       display: none;
     }
   }

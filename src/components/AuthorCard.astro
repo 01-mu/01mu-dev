@@ -65,3 +65,66 @@ const {
     </div>
   </div>
 </div>
+
+<style>
+  .author-card {
+    display: grid;
+    gap: 0.35rem;
+    justify-items: start;
+    text-align: left;
+    --author-size: 100px;
+  }
+
+  .author-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .author-icon {
+    width: var(--author-size);
+    height: var(--author-size);
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--bg-paper);
+  }
+
+  .author-meta {
+    text-align: left;
+  }
+
+  .author-name {
+    font-weight: 600;
+  }
+
+  .author-links {
+    display: flex;
+    gap: 0.65rem;
+    margin-top: 0.35rem;
+    justify-content: flex-start;
+  }
+
+  .author-links a {
+    width: 18px;
+    height: 18px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--muted);
+    transition: color 160ms ease;
+  }
+
+  .author-links a:hover {
+    color: var(--ink);
+  }
+
+  .author-links svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .author-links .rss-icon svg {
+    width: 20px;
+    height: 20px;
+  }
+</style>

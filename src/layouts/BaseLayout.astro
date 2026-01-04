@@ -41,3 +41,116 @@ const pageTitle = title ? `${title} · 01-mu` : "01-mu";
     </footer>
   </body>
 </html>
+
+<style>
+  main {
+    margin: 0 auto;
+    max-width: 76ch;
+    padding: 3.5rem 1.5rem 4.5rem;
+    background: var(--bg-paper);
+    min-height: 70vh;
+  }
+
+  .main--post {
+    max-width: none;
+    background: transparent;
+    padding: 1.5rem 0 4.5rem;
+  }
+
+  .main--home {
+    max-width: none;
+    background: transparent;
+    padding: 1.5rem 0 4.5rem;
+  }
+
+  .site-header {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 1.2rem 2rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+  }
+
+  .site-brand {
+    padding-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.06rem;
+    text-align: left;
+  }
+
+  .site-title {
+    font-size: 1.35rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+  }
+
+  .site-tagline {
+    font-size: 0.95rem;
+    color: var(--muted);
+  }
+
+  .site-title-link {
+    font-size: 1.8rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+  }
+
+  .site-nav {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.95rem;
+    justify-content: flex-end;
+  }
+
+  header .logo {
+    font-weight: 600;
+    letter-spacing: 0.01em;
+  }
+
+  footer {
+    max-width: 76ch;
+    margin: 0 auto 2.5rem;
+    padding: 0 1.5rem;
+    color: var(--muted);
+    font-size: 0.85rem;
+    text-align: center;
+  }
+
+  @media (max-width: 720px) {
+    main {
+      padding: 2.5rem 1.25rem 3.5rem;
+    }
+
+    .main--post {
+      padding: 2.5rem 0 3.5rem;
+    }
+
+    .main--home {
+      padding: 2.5rem 0 3.5rem;
+    }
+
+    .site-header {
+      padding: 1.25rem 1.5rem 0;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.75rem;
+    }
+
+    .site-nav {
+      flex-wrap: wrap;
+      justify-content: flex-start;
+    }
+
+    .site-brand {
+      text-align: left;
+    }
+
+    .site-title-link {
+      justify-self: start;
+    }
+  }
+</style>

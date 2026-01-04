@@ -35,3 +35,27 @@ const taggedPosts = posts.filter((post) => post.data.tags.includes(tag));
     </ul>
   )}
 </BaseLayout>
+
+<style>
+  .post-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .post-list li {
+    padding: 1.25rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .post-list .title {
+    display: block;
+    font-size: 1.1rem;
+    font-weight: 560;
+  }
+
+  .post-list .meta {
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+</style>

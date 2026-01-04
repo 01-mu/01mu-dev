@@ -51,3 +51,62 @@ const formattedDate = new Date(date).toLocaleDateString("en-US", {
     </aside>
   </div>
 </BaseLayout>
+
+<style>
+  .post-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 82ch) 220px minmax(0, 1fr);
+    gap: 2.5rem;
+    align-items: start;
+  }
+
+  .post-content {
+    min-width: 0;
+    grid-column: 2;
+    background: var(--bg-paper);
+    padding: 2.5rem 2.75rem 3rem;
+  }
+
+  .post-toc {
+    position: sticky;
+    top: 5.5rem;
+    align-self: start;
+    grid-column: 3;
+  }
+
+  .sidebar-divider {
+    height: 1px;
+    background: var(--border);
+    margin: 1.5rem 0 1.25rem;
+  }
+
+  .tag-card {
+    margin-top: 1.2rem;
+    display: grid;
+    gap: 0.5rem;
+  }
+
+  .tag-card-title {
+    font-size: 0.8rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 0;
+  }
+
+  @media (max-width: 720px) {
+    .post-layout {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .post-content {
+      grid-column: auto;
+      padding: 2rem 1.5rem 2.5rem;
+    }
+
+    .post-toc {
+      grid-column: auto;
+      display: none;
+    }
+  }
+</style>

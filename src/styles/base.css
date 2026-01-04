@@ -45,62 +45,6 @@ a:focus-visible {
   outline-offset: 3px;
 }
 
-main {
-  margin: 0 auto;
-  max-width: 76ch;
-  padding: 3.5rem 1.5rem 4.5rem;
-  background: var(--bg-paper);
-  min-height: 70vh;
-}
-
-.site-header {
-  width: 100%;
-  max-width: none;
-  margin: 0;
-  padding: 1.2rem 2rem 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 1rem;
-}
-
-.site-brand {
-  padding-bottom: 1rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.06rem;
-  text-align: left;
-}
-
-.site-title {
-  font-size: 1.35rem;
-  font-weight: 600;
-  letter-spacing: 0.01em;
-}
-
-.site-tagline {
-  font-size: 0.95rem;
-  color: var(--muted);
-}
-
-.site-title-link {
-  font-size: 1.8rem;
-  font-weight: 600;
-  letter-spacing: 0.01em;
-}
-
-.site-nav {
-  display: flex;
-  gap: 1rem;
-  font-size: 0.95rem;
-  justify-content: flex-end;
-}
-
-header .logo {
-  font-weight: 600;
-  letter-spacing: 0.01em;
-}
-
 h1,
 h2,
 h3 {
@@ -155,11 +99,23 @@ blockquote {
   color: var(--muted);
 }
 
-footer {
-  max-width: 76ch;
-  margin: 0 auto 2.5rem;
-  padding: 0 1.5rem;
+.prose-meta {
   color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.page-title {
+  margin-top: 0;
+}
+
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 0.6rem;
+}
+
+.tag-list a,
+.tag-pill {
   font-size: 0.85rem;
-  text-align: center;
+  color: var(--muted);
 }

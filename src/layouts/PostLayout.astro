@@ -15,7 +15,6 @@ type Props = {
   tags?: string[];
   description?: string;
   headings?: Heading[];
-  tagCounts?: Record<string, number>;
 };
 
 const {
@@ -24,7 +23,6 @@ const {
   tags = [],
   description,
   headings = [],
-  tagCounts = {},
 } = Astro.props as Props;
 const formattedDate = new Date(date).toLocaleDateString("en-US", {
   year: "numeric",
@@ -52,20 +50,6 @@ const formattedDate = new Date(date).toLocaleDateString("en-US", {
       <slot />
     </article>
     <Sidebar variant="post">
-      {
-        tags.length > 0 && (
-          <div class="tag-card">
-            <p class="tag-card-title">Tags</p>
-            <div class="tag-list">
-              {tags.map((tag) => (
-                <a class="tag-pill" href={`/tags/${encodeURIComponent(tag)}`}>
-                  {tag} {tagCounts[tag] ? `(${tagCounts[tag]})` : ""}
-                </a>
-              ))}
-            </div>
-          </div>
-        )
-      }
       <div class="sidebar-divider" aria-hidden="true"></div>
       <div class="toc-panel" id="mobile-toc-panel">
         <TableOfContents headings={headings} />
@@ -119,20 +103,6 @@ const formattedDate = new Date(date).toLocaleDateString("en-US", {
     margin: 1.5rem 0 1.25rem;
   }
 
-  .tag-card {
-    margin-top: 1.2rem;
-    display: grid;
-    gap: 0.5rem;
-  }
-
-  .tag-card-title {
-    font-size: 0.8rem;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin: 0;
-  }
-
   @media (max-width: 720px) {
     .post-layout {
       display: flex;
@@ -143,10 +113,6 @@ const formattedDate = new Date(date).toLocaleDateString("en-US", {
       grid-column: auto;
       order: 1;
       padding: 2rem 1.5rem 2.25rem;
-    }
-
-    .tag-card {
-      display: none;
     }
 
     .sidebar-divider {

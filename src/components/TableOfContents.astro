@@ -169,7 +169,15 @@ const visibleHeadings = headings.filter((heading) =>
     updateActive();
   };
 
-  document.querySelectorAll(".toc-root").forEach(initRoot);
+  const initAll = () => {
+    document.querySelectorAll(".toc-root").forEach(initRoot);
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initAll, { once: true });
+  } else {
+    initAll();
+  }
 </script>
 
 <style>

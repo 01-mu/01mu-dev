@@ -1,15 +1,12 @@
 ---
-import { getAllTags, getVisiblePosts } from "../../utils/posts";
+import { getVisiblePosts } from "../../utils/posts";
 import PostLayout from "../../layouts/PostLayout.astro";
 
 export async function getStaticPaths() {
   const posts = await getVisiblePosts();
-  const tagCounts = Object.fromEntries(
-    getAllTags(posts).map(({ tag, count }) => [tag, count]),
-  );
   return posts.map((post) => ({
     params: { slug: post.slug },
-    props: { ...post, tagCounts },
+    props: { ...post },
   }));
 }
 
@@ -23,7 +20,6 @@ const { Content, headings } = await post.render();
   tags={post.data.tags}
   description={post.data.description}
   headings={headings}
-  tagCounts={post.tagCounts}
 >
   <Content />
 </PostLayout>

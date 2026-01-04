@@ -1,0 +1,165 @@
+:root {
+  --ink: #1c2a33;
+  --muted: #5e6e78;
+  --bg-main: #e7eef0;
+  --bg-paper: #f6f9fa;
+  --accent: #8fafb3;
+  --border: rgba(28, 42, 51, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--bg-main);
+  color: var(--ink);
+  font-family: "Source Serif 4", "Charter", "Iowan Old Style", "Times New Roman", serif;
+  line-height: 1.75;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 160ms ease;
+}
+
+a:hover {
+  border-bottom-color: var(--border);
+}
+
+a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+main {
+  margin: 0 auto;
+  max-width: 76ch;
+  padding: 3.5rem 1.5rem 4.5rem;
+  background: var(--bg-paper);
+  min-height: 70vh;
+}
+
+.site-header {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 1.2rem 2rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+}
+
+.site-brand {
+  padding-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.06rem;
+  text-align: left;
+}
+
+.site-title {
+  font-size: 1.35rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.site-tagline {
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+.site-title-link {
+  font-size: 1.8rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.site-nav {
+  display: flex;
+  gap: 1rem;
+  font-size: 0.95rem;
+  justify-content: flex-end;
+}
+
+header .logo {
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+h1,
+h2,
+h3 {
+  font-weight: 560;
+  line-height: 1.25;
+  margin: 2.5rem 0 1rem;
+}
+
+h1 {
+  font-size: 1.9rem;
+}
+
+h2 {
+  font-size: 1.4rem;
+}
+
+h3 {
+  font-size: 1.1rem;
+}
+
+p {
+  margin: 1.25rem 0;
+}
+
+ul,
+ol {
+  padding-left: 1.2rem;
+  margin: 1.25rem 0;
+}
+
+li + li {
+  margin-top: 0.5rem;
+}
+
+code,
+pre {
+  font-family: "JetBrains Mono", "SFMono-Regular", "Consolas", "Liberation Mono", monospace;
+  font-size: 0.92em;
+}
+
+pre {
+  padding: 1rem 1.2rem;
+  background: rgba(143, 175, 179, 0.12);
+  border-radius: 6px;
+  overflow-x: auto;
+}
+
+blockquote {
+  margin: 1.5rem 0;
+  padding: 0.2rem 1.25rem;
+  border-left: 2px solid var(--border);
+  color: var(--muted);
+}
+
+footer {
+  max-width: 76ch;
+  margin: 0 auto 2.5rem;
+  padding: 0 1.5rem;
+  color: var(--muted);
+  font-size: 0.85rem;
+  text-align: center;
+}

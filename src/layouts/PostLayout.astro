@@ -168,10 +168,20 @@ const formattedDate = new Date(date).toLocaleDateString("en-US", {
     .toc-inline {
       display: none;
     }
+
+    .post-toc .toc-inline {
+      display: none;
+    }
   }
 
   .toc-inline {
-    display: block;
+    display: none;
+  }
+
+  @media (min-width: 721px) {
+    .toc-inline {
+      display: block;
+    }
   }
 
   :global(.toc-panel .toc) {

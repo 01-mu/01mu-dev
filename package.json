@@ -16,6 +16,9 @@
     "@astrojs/rss": "^4.0.12",
     "astro": "^5.16.6"
   },
+  "engines": {
+    "node": ">=20"
+  },
   "packageManager": "pnpm@10.25.0",
   "devDependencies": {
     "@playwright/test": "^1.57.0"

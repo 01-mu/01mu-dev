@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import AuthorCard from "../../components/AuthorCard.astro";
 import { getAllTags, getVisiblePosts } from "../../utils/posts";
 
 export async function getStaticPaths() {
@@ -14,26 +15,33 @@ const { tag } = Astro.params;
 const taggedPosts = posts.filter((post) => post.data.tags.includes(tag));
 ---
 
-<BaseLayout title={`Tag: ${tag}`}>
-  <h1 class="page-title">Tag: {tag}</h1>
-  {taggedPosts.length === 0 ? (
-    <p class="prose-meta">No posts for this tag yet.</p>
-  ) : (
-    <ul class="post-list">
-      {taggedPosts.map((post) => (
-        <li>
-          <a class="title" href={`/posts/${post.slug}`}>{post.data.title}</a>
-          <div class="meta">
-            {post.data.date.toLocaleDateString("en-US", {
-              year: "numeric",
-              month: "short",
-              day: "numeric",
-            })}
-          </div>
-        </li>
-      ))}
-    </ul>
-  )}
+<BaseLayout title={`Tag: ${tag}`} mainClass="main--home">
+  <div class="home-layout">
+    <section class="home-content">
+      <h1 class="page-title">Tag: {tag}</h1>
+      {taggedPosts.length === 0 ? (
+        <p class="prose-meta">No posts for this tag yet.</p>
+      ) : (
+        <ul class="post-list">
+          {taggedPosts.map((post) => (
+            <li>
+              <a class="title" href={`/posts/${post.slug}`}>{post.data.title}</a>
+              <div class="meta">
+                {post.data.date.toLocaleDateString("en-US", {
+                  year: "numeric",
+                  month: "short",
+                  day: "numeric",
+                })}
+              </div>
+            </li>
+          ))}
+        </ul>
+      )}
+    </section>
+    <aside class="home-sidebar">
+      <AuthorCard />
+    </aside>
+  </div>
 </BaseLayout>
 
 <style>
@@ -57,5 +65,39 @@ const taggedPosts = posts.filter((post) => post.data.tags.includes(tag));
   .post-list .meta {
     color: var(--muted);
     font-size: 0.9rem;
+  }
+
+  .home-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 82ch) 220px minmax(0, 1fr);
+    gap: 2.5rem;
+    align-items: start;
+  }
+
+  .home-content {
+    min-width: 0;
+    grid-column: 2;
+    background: var(--bg-paper);
+    padding: 2.5rem 2.75rem 2.6rem;
+  }
+
+  .home-sidebar {
+    align-self: start;
+    grid-column: 3;
+  }
+
+  @media (max-width: 720px) {
+    .home-layout {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .home-sidebar {
+      display: none;
+    }
+
+    .home-content {
+      grid-column: auto;
+      padding: 2rem 1.5rem 2.25rem;
+    }
   }
 </style>

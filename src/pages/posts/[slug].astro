@@ -1,0 +1,22 @@
+---
+import { getVisiblePosts } from "../../utils/posts";
+import PostLayout from "../../layouts/PostLayout.astro";
+
+export async function getStaticPaths() {
+  const posts = await getVisiblePosts();
+  return posts.map((post) => ({ params: { slug: post.slug }, props: post }));
+}
+
+const post = Astro.props;
+const { Content, headings } = await post.render();
+---
+
+<PostLayout
+  title={post.data.title}
+  date={post.data.date}
+  tags={post.data.tags}
+  description={post.data.description}
+  headings={headings}
+>
+  <Content />
+</PostLayout>

@@ -1,0 +1,60 @@
+---
+const {
+  headings = [],
+  levels = [2, 3],
+  title = "On this page",
+} = Astro.props;
+
+const visibleHeadings = headings.filter((heading) =>
+  levels.includes(heading.depth),
+);
+---
+
+{visibleHeadings.length > 0 && (
+  <nav class="toc" aria-label="Table of contents">
+    <p class="toc-title">{title}</p>
+    <ul class="toc-list">
+      {visibleHeadings.map((heading) => (
+        <li class={`toc-item depth-${heading.depth}`}>
+          <a href={`#${heading.slug}`} data-toc-link={heading.slug}>
+            {heading.text}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+)}
+
+<script type="module">
+  const links = Array.from(
+    document.querySelectorAll("[data-toc-link]"),
+  );
+  const headings = Array.from(
+    document.querySelectorAll("article h2, article h3"),
+  );
+
+  if (links.length === 0 || headings.length === 0) {
+    return;
+  }
+
+  const setActive = (id) => {
+    links.forEach((link) => {
+      link.classList.toggle("is-active", link.dataset.tocLink === id);
+    });
+  };
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      const visible = entries
+        .filter((entry) => entry.isIntersecting)
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+
+      if (visible.length > 0) {
+        setActive(visible[0].target.id);
+      }
+    },
+    { rootMargin: "0px 0px -70% 0px", threshold: [0.2, 0.6] },
+  );
+
+  headings.forEach((heading) => observer.observe(heading));
+</script>

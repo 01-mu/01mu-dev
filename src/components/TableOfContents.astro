@@ -11,25 +11,36 @@ const visibleHeadings = headings.filter((heading) =>
 ---
 
 {visibleHeadings.length > 0 && (
-  <nav class="toc" aria-label="Table of contents">
-    <p class="toc-title">{title}</p>
-    <ul class="toc-list">
-      {visibleHeadings.map((heading) => (
-        <li class={`toc-item depth-${heading.depth}`}>
-          <a href={`#${heading.slug}`} data-toc-link={heading.slug}>
-            {heading.text}
-          </a>
-        </li>
-      ))}
-    </ul>
-  </nav>
+  <div class="toc-root">
+    <nav class="toc" aria-label="Table of contents">
+      <p class="toc-title">{title}</p>
+      <ul class="toc-list">
+        {visibleHeadings.map((heading) => (
+          <li class={`toc-item depth-${heading.depth}`}>
+            <a href={`#${heading.slug}`} data-toc-link={heading.slug}>
+              {heading.text}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  </div>
 )}
 
 <script type="module">
   const initToc = () => {
-    const tocContainer = document.querySelector(".toc");
+    const root = document.currentScript?.closest(".toc-root");
+    if (!root) {
+      return;
+    }
+    const isInline = Boolean(root.closest(".toc-inline"));
+    const isMobile = window.matchMedia("(max-width: 720px)").matches;
+    if (isInline && isMobile) {
+      return;
+    }
+    const tocContainer = root.querySelector(".toc");
     const links = Array.from(
-      document.querySelectorAll("[data-toc-link]"),
+      root.querySelectorAll("[data-toc-link]"),
     );
     const headings = links
       .map((link) => document.getElementById(link.dataset.tocLink))

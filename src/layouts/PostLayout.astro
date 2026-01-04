@@ -23,33 +23,57 @@ const formattedDate = new Date(date).toLocaleDateString("en-US", {
     <article class="post-content">
       <p class="prose-meta">{formattedDate}</p>
       <h1 class="page-title">{title}</h1>
-      {tags.length > 0 && (
-        <div class="tag-list">
-          {tags.map((tag) => (
-            <a class="tag-pill" href={`/tags/${encodeURIComponent(tag)}`}>{tag}</a>
-          ))}
-        </div>
-      )}
-      <slot />
-    </article>
-    <aside class="post-toc">
-      <AuthorCard />
-      {tags.length > 0 && (
-        <div class="tag-card">
-          <p class="tag-card-title">Tags</p>
+      {
+        tags.length > 0 && (
           <div class="tag-list">
             {tags.map((tag) => (
               <a class="tag-pill" href={`/tags/${encodeURIComponent(tag)}`}>
-                {tag} {tagCounts[tag] ? `(${tagCounts[tag]})` : ""}
+                {tag}
               </a>
             ))}
           </div>
-        </div>
-      )}
+        )
+      }
+      <slot />
+    </article>
+    <aside class="home-sidebar">
+      <AuthorCard />
+      {
+        tags.length > 0 && (
+          <div class="tag-card">
+            <p class="tag-card-title">Tags</p>
+            <div class="tag-list">
+              {tags.map((tag) => (
+                <a class="tag-pill" href={`/tags/${encodeURIComponent(tag)}`}>
+                  {tag} {tagCounts[tag] ? `(${tagCounts[tag]})` : ""}
+                </a>
+              ))}
+            </div>
+          </div>
+        )
+      }
       <div class="sidebar-divider" aria-hidden="true"></div>
-      <TableOfContents headings={headings} />
+      <div class="toc-panel" id="mobile-toc-panel">
+        <TableOfContents headings={headings} />
+      </div>
+      <div class="toc-inline">
+        <TableOfContents headings={headings} />
+      </div>
     </aside>
   </div>
+  <button
+    class="toc-toggle"
+    type="button"
+    aria-controls="mobile-toc-panel"
+    aria-expanded="false"
+  >
+    <svg viewBox="0 0 24 24" aria-hidden="true" class="toc-icon">
+      <path
+        fill="currentColor"
+        d="M4 6.5h16v2H4v-2Zm0 5h10v2H4v-2Zm0 5h13v2H4v-2Z"></path>
+    </svg>
+    Contents
+  </button>
 </BaseLayout>
 
 <style>
@@ -67,11 +91,21 @@ const formattedDate = new Date(date).toLocaleDateString("en-US", {
     padding: 2.5rem 2.75rem 2.6rem;
   }
 
-  .post-toc {
+  .home-sidebar {
     position: sticky;
     top: 5.5rem;
     align-self: start;
     grid-column: 3;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .toc-panel {
+    display: none;
+  }
+
+  .toc-toggle {
+    display: none;
   }
 
   .sidebar-divider {
@@ -96,17 +130,137 @@ const formattedDate = new Date(date).toLocaleDateString("en-US", {
 
   @media (max-width: 720px) {
     .post-layout {
-      grid-template-columns: minmax(0, 1fr);
+      display: flex;
+      flex-direction: column;
     }
 
     .post-content {
       grid-column: auto;
+      order: 1;
       padding: 2rem 1.5rem 2.25rem;
     }
 
-    .post-toc {
+    .home-sidebar {
+      width: 100%;
       grid-column: auto;
+      order: 2;
+      margin-top: 1.5rem;
+      position: static;
+      align-items: center;
+    }
+
+    .tag-card {
+      display: none;
+    }
+
+    .sidebar-divider {
+      display: none;
+    }
+
+    .toc-panel {
+      position: fixed;
+      display: none;
+      top: 4.5rem;
+      right: 1rem;
+      left: 1rem;
+      max-height: 60vh;
+      overflow-y: auto;
+      background: var(--bg-paper);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem;
+      box-shadow: 0 12px 30px rgba(28, 42, 51, 0.15);
+      z-index: 20;
+    }
+
+    .toc-toggle {
+      display: inline-flex;
+    }
+
+    :global(body.toc-open) .toc-panel {
+      display: block;
+    }
+
+    .toc-inline {
+      display: none;
+    }
+
+    .home-sidebar .toc-inline {
       display: none;
     }
   }
+
+  .toc-inline {
+    display: none;
+  }
+
+  @media (min-width: 721px) {
+    .toc-inline {
+      display: block;
+    }
+  }
+
+  :global(.toc-panel .toc) {
+    max-height: none;
+    overflow: visible;
+    padding-right: 0;
+  }
+
+  .toc-icon {
+    width: 16px;
+    height: 16px;
+  }
+
+  .toc-toggle {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 21;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.45rem 0.75rem;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: var(--bg-paper);
+    color: var(--ink);
+    font-size: 0.85rem;
+  }
 </style>
+
+<script>
+  const toggle = document.querySelector(".toc-toggle");
+  const panel = document.querySelector("#mobile-toc-panel");
+
+  if (toggle && panel) {
+    const update = (open) => {
+      document.body.classList.toggle("toc-open", open);
+      toggle.setAttribute("aria-expanded", open ? "true" : "false");
+    };
+
+    toggle.addEventListener("click", () => {
+      const open = document.body.classList.contains("toc-open");
+      update(!open);
+    });
+
+    document.addEventListener("click", (event) => {
+      const target = event.target;
+      if (!(target instanceof Element)) {
+        return;
+      }
+      if (!document.body.classList.contains("toc-open")) {
+        return;
+      }
+      if (panel.contains(target) || toggle.contains(target)) {
+        return;
+      }
+      update(false);
+    });
+
+    panel.addEventListener("click", (event) => {
+      const target = event.target;
+      if (target instanceof Element && target.closest("[data-toc-link]")) {
+        update(false);
+      }
+    });
+  }
+</script>

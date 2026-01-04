@@ -292,6 +292,11 @@ blockquote {
   height: 16px;
 }
 
+.author-links .rss-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
 .home-layout {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 82ch) 220px minmax(0, 1fr);

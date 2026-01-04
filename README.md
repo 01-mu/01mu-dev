@@ -21,6 +21,17 @@ pnpm run dev
 - Frontmatter fields: `title`, `date`, `tags`, `description` (optional), `draft`.
 - Drafts (`draft: true`) are excluded from production builds.
 
+## Checks
+```bash
+pnpm astro check
+```
+
+## Visual Snapshots (Playwright)
+```bash
+pnpm test:e2e:update
+```
+- Snapshots are saved under `e2e/snapshots/`.
+
 ## Deployment (Cloudflare Pages GUI)
 - Build command: `pnpm run build`
 - Output directory: `dist`

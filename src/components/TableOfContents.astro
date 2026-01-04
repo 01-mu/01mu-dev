@@ -40,6 +40,29 @@ const visibleHeadings = headings.filter((heading) =>
     }
 
     let lastActiveIndex = -1;
+    let scrollAnimId = null;
+    const smoothScrollTo = (targetTop) => {
+      if (scrollAnimId) {
+        cancelAnimationFrame(scrollAnimId);
+      }
+      const startTop = tocContainer.scrollTop;
+      const delta = targetTop - startTop;
+      const duration = 420;
+      const startTime = performance.now();
+
+      const step = (now) => {
+        const t = Math.min(1, (now - startTime) / duration);
+        const eased = 1 - Math.pow(1 - t, 4);
+        tocContainer.scrollTop = startTop + delta * eased;
+        if (t < 1) {
+          scrollAnimId = requestAnimationFrame(step);
+        } else {
+          scrollAnimId = null;
+        }
+      };
+
+      scrollAnimId = requestAnimationFrame(step);
+    };
     const pad = 48;
     const setActiveIndex = (activeIndex) => {
       links.forEach((link, index) => {
@@ -56,9 +79,13 @@ const visibleHeadings = headings.filter((heading) =>
           const bottomEdge = containerRect.bottom - pad;
 
           if (linkRect.top < topEdge) {
-            tocContainer.scrollTop -= topEdge - linkRect.top;
+            smoothScrollTo(
+              tocContainer.scrollTop - (topEdge - linkRect.top),
+            );
           } else if (linkRect.bottom > bottomEdge) {
-            tocContainer.scrollTop += linkRect.bottom - bottomEdge;
+            smoothScrollTo(
+              tocContainer.scrollTop + (linkRect.bottom - bottomEdge),
+            );
           }
         }
         lastActiveIndex = activeIndex;

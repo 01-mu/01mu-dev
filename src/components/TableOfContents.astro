@@ -15,6 +15,9 @@ const visibleHeadings = headings.filter((heading) =>
     <nav class="toc" aria-label="Table of contents">
       <p class="toc-title">{title}</p>
       <ul class="toc-list">
+        <li class="toc-item toc-item--top">
+          <a href="#top" data-toc-link="top">Return to top</a>
+        </li>
         {visibleHeadings.map((heading) => (
           <li class={`toc-item depth-${heading.depth}`}>
             <a href={`#${heading.slug}`} data-toc-link={heading.slug}>
@@ -205,5 +208,17 @@ const visibleHeadings = headings.filter((heading) =>
 
   .toc-item.depth-3 {
     padding-left: 0.9rem;
+  }
+
+  @media (max-width: 720px) {
+    .toc-title {
+      display: none;
+    }
+  }
+
+  @media (min-width: 721px) {
+    .toc-item--top {
+      display: none;
+    }
   }
 </style>

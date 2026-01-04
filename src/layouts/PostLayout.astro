@@ -20,7 +20,7 @@ const formattedDate = new Date(date).toLocaleDateString("en-US", {
 
 <BaseLayout title={title} description={description} mainClass="main--post">
   <div class="post-layout">
-    <article class="post-content">
+    <article class="post-content" id="top">
       <p class="prose-meta">{formattedDate}</p>
       <h1 class="page-title">{title}</h1>
       {

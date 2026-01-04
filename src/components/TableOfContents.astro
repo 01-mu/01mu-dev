@@ -26,35 +26,65 @@ const visibleHeadings = headings.filter((heading) =>
 )}
 
 <script type="module">
-  const links = Array.from(
-    document.querySelectorAll("[data-toc-link]"),
-  );
-  const headings = Array.from(
-    document.querySelectorAll("article h2, article h3"),
-  );
+  const initToc = () => {
+    const links = Array.from(
+      document.querySelectorAll("[data-toc-link]"),
+    );
+    const headings = links
+      .map((link) => document.getElementById(link.dataset.tocLink))
+      .filter(Boolean);
 
-  if (links.length === 0 || headings.length === 0) {
-    return;
-  }
+    if (links.length === 0 || headings.length === 0) {
+      return;
+    }
 
-  const setActive = (id) => {
-    links.forEach((link) => {
-      link.classList.toggle("is-active", link.dataset.tocLink === id);
+    const setActiveIndex = (activeIndex) => {
+      links.forEach((link, index) => {
+        link.classList.toggle("is-active", index === activeIndex);
+        link.classList.toggle("is-past", index < activeIndex);
+      });
+    };
+
+    let offsets = [];
+    const updateOffsets = () => {
+      offsets = headings.map(
+        (heading) => heading.getBoundingClientRect().top + window.scrollY,
+      );
+    };
+
+    const updateActive = () => {
+      const targetY = window.scrollY + window.innerHeight * 0.3;
+      let activeIndex = 0;
+
+      offsets.forEach((offset, index) => {
+        if (offset <= targetY) {
+          activeIndex = index;
+        }
+      });
+
+      setActiveIndex(activeIndex);
+    };
+
+    let ticking = false;
+    const onScroll = () => {
+      if (ticking) {
+        return;
+      }
+      ticking = true;
+      window.requestAnimationFrame(() => {
+        updateActive();
+        ticking = false;
+      });
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", () => {
+      updateOffsets();
+      onScroll();
     });
+    updateOffsets();
+    updateActive();
   };
 
-  const observer = new IntersectionObserver(
-    (entries) => {
-      const visible = entries
-        .filter((entry) => entry.isIntersecting)
-        .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
-
-      if (visible.length > 0) {
-        setActive(visible[0].target.id);
-      }
-    },
-    { rootMargin: "0px 0px -70% 0px", threshold: [0.2, 0.6] },
-  );
-
-  headings.forEach((heading) => observer.observe(heading));
+  initToc();
 </script>

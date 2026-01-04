@@ -1,4 +1,4 @@
-import { getCollection } from 'astro:content';
+import { getCollection, type CollectionEntry } from 'astro:content';
 
 export async function getVisiblePosts() {
   const isProd = import.meta.env.PROD;
@@ -12,7 +12,7 @@ export async function getVisiblePosts() {
   );
 }
 
-export function getAllTags(posts) {
+export function getAllTags(posts: CollectionEntry<"posts">[]) {
   const tagMap = new Map<string, number>();
 
   for (const post of posts) {

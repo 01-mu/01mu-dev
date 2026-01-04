@@ -1,9 +1,19 @@
 ---
+type TocHeading = {
+  depth: number;
+  slug: string;
+  text: string;
+};
+
 const {
   headings = [],
   levels = [2, 3],
   title = "On this page",
-} = Astro.props;
+} = Astro.props as {
+  headings?: TocHeading[];
+  levels?: number[];
+  title?: string;
+};
 
 const visibleHeadings = headings.filter((heading) =>
   levels.includes(heading.depth),
@@ -30,7 +40,7 @@ const visibleHeadings = headings.filter((heading) =>
   </div>
 )}
 
-<script type="module">
+<script is:inline>
   const initRoot = (root) => {
     if (!root || root.dataset.tocInitialized === "true") {
       return;

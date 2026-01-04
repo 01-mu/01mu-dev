@@ -148,7 +148,7 @@ const formattedDate = new Date(date).toLocaleDateString("en-US", {
       right: 1rem;
       left: 1rem;
       max-height: 60vh;
-      overflow: auto;
+      overflow-y: auto;
       background: var(--bg-paper);
       border: 1px solid var(--border);
       border-radius: 10px;
@@ -172,6 +172,12 @@ const formattedDate = new Date(date).toLocaleDateString("en-US", {
 
   .toc-inline {
     display: block;
+  }
+
+  :global(.toc-panel .toc) {
+    max-height: none;
+    overflow: visible;
+    padding-right: 0;
   }
 
   .toc-icon {
@@ -208,6 +214,20 @@ const formattedDate = new Date(date).toLocaleDateString("en-US", {
     toggle.addEventListener("click", () => {
       const open = document.body.classList.contains("toc-open");
       update(!open);
+    });
+
+    document.addEventListener("click", (event) => {
+      const target = event.target;
+      if (!(target instanceof Element)) {
+        return;
+      }
+      if (!document.body.classList.contains("toc-open")) {
+        return;
+      }
+      if (panel.contains(target) || toggle.contains(target)) {
+        return;
+      }
+      update(false);
     });
 
     panel.addEventListener("click", (event) => {

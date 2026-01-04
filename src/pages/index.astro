@@ -41,7 +41,7 @@ const tags = getAllTags(posts);
       {tags.length > 0 && (
         <>
           <div class="sidebar-divider" aria-hidden="true"></div>
-          <div class="tag-card">
+          <div class="tag-card home-tag-card">
             <p class="tag-card-title">Tags</p>
             <div class="tag-list">
               {tags.map(({ tag, count }) => (
@@ -122,15 +122,31 @@ const tags = getAllTags(posts);
   @media (max-width: 720px) {
     .home-layout {
       grid-template-columns: minmax(0, 1fr);
+      display: flex;
+      flex-direction: column;
     }
 
     .home-sidebar {
+      width: 100%;
+      display: block;
+      order: 2;
+      margin-top: 1.5rem;
+      display: flex;
+      justify-content: center;
+    }
+
+    .home-tag-card {
+      display: none;
+    }
+
+    .sidebar-divider {
       display: none;
     }
 
     .home-content {
       /* Mobile: reset the grid column so the content centers correctly. */
       grid-column: auto;
+      order: 1;
       padding: 1.5rem 1.5rem 2.25rem;
     }
   }

@@ -61,14 +61,22 @@ import AuthorCard from "../components/AuthorCard.astro";
   @media (max-width: 720px) {
     .home-layout {
       grid-template-columns: minmax(0, 1fr);
+      display: flex;
+      flex-direction: column;
     }
 
     .home-sidebar {
-      display: none;
+      width: 100%;
+      display: block;
+      order: 2;
+      margin-top: 1.5rem;
+      display: flex;
+      justify-content: center;
     }
 
     .home-content {
       grid-column: auto;
+      order: 1;
       padding: 2rem 1.5rem 2.25rem;
     }
   }

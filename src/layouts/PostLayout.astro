@@ -3,7 +3,14 @@ import BaseLayout from "./BaseLayout.astro";
 import TableOfContents from "../components/TableOfContents.astro";
 import AuthorCard from "../components/AuthorCard.astro";
 
-const { title, date, tags = [], description, headings = [] } = Astro.props;
+const {
+  title,
+  date,
+  tags = [],
+  description,
+  headings = [],
+  tagCounts = {},
+} = Astro.props;
 const formattedDate = new Date(date).toLocaleDateString("en-US", {
   year: "numeric",
   month: "long",
@@ -27,6 +34,18 @@ const formattedDate = new Date(date).toLocaleDateString("en-US", {
     </article>
     <aside class="post-toc">
       <AuthorCard />
+      {tags.length > 0 && (
+        <div class="tag-card">
+          <p class="tag-card-title">Tags</p>
+          <div class="tag-list">
+            {tags.map((tag) => (
+              <a class="tag-pill" href={`/tags/${encodeURIComponent(tag)}`}>
+                {tag} {tagCounts[tag] ? `(${tagCounts[tag]})` : ""}
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
       <div class="sidebar-divider" aria-hidden="true"></div>
       <TableOfContents headings={headings} />
     </aside>

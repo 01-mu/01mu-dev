@@ -322,6 +322,20 @@ blockquote {
   margin: 1.5rem 0 1.25rem;
 }
 
+.tag-card {
+  margin-top: 1.2rem;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.tag-card-title {
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0;
+}
+
 
 .toc-title {
   font-size: 0.85rem;

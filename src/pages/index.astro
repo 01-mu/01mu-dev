@@ -1,9 +1,10 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import AuthorCard from "../components/AuthorCard.astro";
-import { getVisiblePosts } from "../utils/posts";
+import { getAllTags, getVisiblePosts } from "../utils/posts";
 
 const posts = await getVisiblePosts();
+const tags = getAllTags(posts);
 ---
 
 <BaseLayout description="Quiet notes for long-form thinking." mainClass="main--home">
@@ -37,6 +38,21 @@ const posts = await getVisiblePosts();
     </section>
     <aside class="home-sidebar">
       <AuthorCard />
+      {tags.length > 0 && (
+        <>
+          <div class="sidebar-divider" aria-hidden="true"></div>
+          <div class="tag-card">
+            <p class="tag-card-title">Tags</p>
+            <div class="tag-list">
+              {tags.map(({ tag, count }) => (
+                <a class="tag-pill" href={`/tags/${encodeURIComponent(tag)}`}>
+                  {tag} ({count})
+                </a>
+              ))}
+            </div>
+          </div>
+        </>
+      )}
     </aside>
   </div>
 </BaseLayout>

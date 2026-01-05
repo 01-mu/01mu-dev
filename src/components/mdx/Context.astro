@@ -1,19 +1,22 @@
 ---
+import "../../styles/mdx-boxes.css";
+
+// Sample component for MDX helper styling.
 const { class: className } = Astro.props;
 ---
 
-<section class:list={["mdx-context", className]}>
-  <slot />
+<section class:list={["mdxbox", "mdxbox--context", className]}>
+  <div class="mdxbox__icon" aria-hidden="true">
+    <svg viewBox="0 0 24 24" role="img">
+      <path d="M4 7h7" />
+      <path d="M15 7h5" />
+      <circle cx="12" cy="7" r="2" />
+      <path d="M4 17h3" />
+      <path d="M11 17h9" />
+      <circle cx="9" cy="17" r="2" />
+    </svg>
+  </div>
+  <div class="mdxbox__body">
+    <slot />
+  </div>
 </section>
-
-<style>
-  .mdx-context {
-    margin: 1.25rem 0;
-    padding: 0.75rem 1rem;
-    border-radius: 6px;
-    border: 1px dashed rgba(28, 42, 51, 0.35);
-    background: rgba(28, 42, 51, 0.05);
-    color: var(--muted);
-    font-size: 0.95rem;
-  }
-</style>

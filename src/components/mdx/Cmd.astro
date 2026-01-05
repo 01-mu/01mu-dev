@@ -1,26 +1,18 @@
 ---
+import "../../styles/mdx-boxes.css";
+
+// Sample component for MDX helper styling.
 const { class: className } = Astro.props;
 ---
 
-<pre class:list={["mdx-cmd", className]}>
-  <code><slot /></code>
-</pre>
-
-<style>
-  .mdx-cmd {
-    margin: 0.75rem 0;
-    padding: 0.5rem 0.75rem;
-    border-radius: 6px;
-    background: rgba(28, 42, 51, 0.06);
-    color: var(--ink);
-    font-size: 0.9rem;
-    line-height: 1.35;
-    overflow-x: auto;
-  }
-
-  .mdx-cmd code {
-    font-family: "JetBrains Mono", "SFMono-Regular", "Consolas", "Liberation Mono",
-      monospace;
-    font-size: 0.95em;
-  }
-</style>
+<section class:list={["mdxbox", "mdxbox--cmd", className]}>
+  <div class="mdxbox__icon" aria-hidden="true">
+    <svg viewBox="0 0 24 24" role="img">
+      <path d="M5 7l4 4-4 4" />
+      <path d="M11 17h8" />
+    </svg>
+  </div>
+  <div class="mdxbox__body">
+    <pre class="mdxbox__cmd"><code><slot /></code></pre>
+  </div>
+</section>

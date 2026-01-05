@@ -1,27 +1,18 @@
 ---
+import "../../styles/mdx-boxes.css";
+
+// Sample component for MDX helper styling.
 const { title, class: className } = Astro.props;
 ---
 
-<section class:list={["mdx-decision", className]}>
-  {title && <p class="mdx-decision__title">{title}</p>}
-  <slot />
+<section class:list={["mdxbox", "mdxbox--decision", className]}>
+  <div class="mdxbox__icon" aria-hidden="true">
+    <svg viewBox="0 0 24 24" role="img">
+      <path d="M7 4.5h10a1 1 0 0 1 1 1v14l-6-3-6 3v-14a1 1 0 0 1 1-1Z" />
+    </svg>
+  </div>
+  <div class="mdxbox__body">
+    {title && <div class="mdxbox__title">{title}</div>}
+    <slot />
+  </div>
 </section>
-
-<style>
-  .mdx-decision {
-    margin: 1.25rem 0;
-    padding: 0.75rem 1rem;
-    border-radius: 6px;
-    border: 1px solid var(--border);
-    background: rgba(28, 42, 51, 0.03);
-    color: var(--muted);
-    font-size: 0.95rem;
-  }
-
-  .mdx-decision__title {
-    margin: 0 0 0.5rem;
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: var(--ink);
-  }
-</style>

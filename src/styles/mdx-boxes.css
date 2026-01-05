@@ -1,0 +1,108 @@
+/* Sample styles for MDX helper components. */
+:root {
+  --mdxbox-text: var(--ink, #1c2a33);
+  --mdxbox-muted: var(--muted, #5e6e78);
+  --mdxbox-border: rgba(28, 42, 51, 0.2);
+  --mdxbox-bg: rgba(28, 42, 51, 0.08);
+  --mdxbox-border-subtle: rgba(28, 42, 51, 0.18);
+  --mdxbox-border-strong: rgba(28, 42, 51, 0.28);
+  --mdxbox-border-faint: rgba(28, 42, 51, 0.12);
+  --mdxbox-bg-subtle: rgba(28, 42, 51, 0.06);
+  --mdxbox-bg-strong: rgba(28, 42, 51, 0.12);
+  --mdxbox-accent: rgba(28, 42, 51, 0.42);
+}
+
+.mdxbox {
+  margin: 1.25rem 0;
+  padding: 0.85rem 1rem;
+  border-radius: 10px;
+  border: 1px solid var(--mdxbox-border);
+  background: var(--mdxbox-bg);
+  color: var(--mdxbox-text);
+  display: grid;
+  grid-template-columns: 16px 1fr;
+  gap: 0.75rem;
+  align-items: start;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.mdxbox__icon {
+  color: rgba(28, 42, 51, 0.68);
+  margin-top: 0.1rem;
+}
+
+.mdxbox__icon svg {
+  width: 16px;
+  height: 16px;
+  display: block;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.75;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.mdxbox__icon svg.mdxbox__icon--fill {
+  fill: currentColor;
+  stroke: none;
+}
+
+.mdxbox__body {
+  min-width: 0;
+}
+
+.mdxbox__body > :first-child {
+  margin-top: 0;
+}
+
+.mdxbox__body > :last-child {
+  margin-bottom: 0;
+}
+
+.mdxbox__title {
+  margin: 0 0 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--mdxbox-text);
+}
+
+.mdxbox--note {
+  --mdxbox-bg: var(--mdxbox-bg-subtle);
+  --mdxbox-border: var(--mdxbox-border-subtle);
+  border-left: 2px solid var(--mdxbox-accent);
+  padding-left: 0.95rem;
+}
+
+.mdxbox--decision {
+  --mdxbox-bg: var(--mdxbox-bg-strong);
+  --mdxbox-border: var(--mdxbox-border-strong);
+}
+
+.mdxbox--context {
+  --mdxbox-bg: var(--mdxbox-bg-subtle);
+  --mdxbox-border: var(--mdxbox-border-subtle);
+  border-style: dashed;
+}
+
+.mdxbox--cmd {
+  --mdxbox-bg: var(--mdxbox-bg);
+  --mdxbox-border: var(--mdxbox-border-strong);
+}
+
+.mdxbox__cmd {
+  margin: 0;
+  padding: 0;
+  font-family: "JetBrains Mono", "SFMono-Regular", "Consolas", "Liberation Mono",
+    monospace;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  white-space: pre;
+  overflow-x: auto;
+}
+
+.mdxbox--wip {
+  --mdxbox-bg: var(--mdxbox-bg-subtle);
+  --mdxbox-border: var(--mdxbox-border-faint);
+  --mdxbox-text: var(--mdxbox-muted);
+}

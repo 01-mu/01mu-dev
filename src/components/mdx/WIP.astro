@@ -1,0 +1,19 @@
+---
+const { class: className } = Astro.props;
+---
+
+<aside class:list={["mdx-wip", className]}>
+  <slot />
+</aside>
+
+<style>
+  .mdx-wip {
+    margin: 1.25rem 0;
+    padding: 0.75rem 1rem;
+    border-radius: 6px;
+    border: 1px solid rgba(28, 42, 51, 0.12);
+    background: rgba(28, 42, 51, 0.02);
+    color: rgba(28, 42, 51, 0.65);
+    font-size: 0.95rem;
+  }
+</style>

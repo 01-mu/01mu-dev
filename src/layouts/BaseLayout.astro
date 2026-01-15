@@ -2,17 +2,24 @@
 import "../styles/global.css";
 
 const { title, description, mainClass = "main--page" } = Astro.props;
-const pageTitle = title ? `${title} · 01-mu` : "01-mu";
+const siteTitle = "mu -> bit";
+const siteTagline = "Designing systems from nothing(mu / 無).";
+const pageTitle = title ? `${title} · ${siteTitle}` : siteTitle;
+const pageDescription = description ?? siteTagline;
 ---
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <title>{pageTitle}</title>
-    {description && <meta name="description" content={description} />}
+    <meta name="description" content={pageDescription} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDescription} />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={pageDescription} />
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -24,8 +31,10 @@ const pageTitle = title ? `${title} · 01-mu` : "01-mu";
   <body>
     <header class="site-header">
       <div class="site-brand">
-        <a href="/" class="site-title-link">In Context</a>
-        <div class="site-tagline">Notes on building and thinking.</div>
+        <a href="/" class="site-title-link" aria-label="mu to bit">
+          {siteTitle}
+        </a>
+        <div class="site-tagline">{siteTagline}</div>
       </div>
       <nav class="site-nav">
         <a href="/">Home</a>

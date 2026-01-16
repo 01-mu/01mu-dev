@@ -52,6 +52,17 @@ import Sidebar from "../components/Sidebar.astro";
   }
 
 
+  @media (max-width: 1024px) {
+    .home-layout {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .home-content {
+      grid-column: auto;
+      width: 100%;
+    }
+  }
+
   @media (max-width: 720px) {
     .home-layout {
       grid-template-columns: minmax(0, 1fr);

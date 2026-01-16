@@ -22,6 +22,12 @@ const { variant = "home" } = Astro.props;
     flex-direction: column;
   }
 
+  @media (max-width: 1024px) {
+    .home-sidebar {
+      grid-column: auto;
+    }
+  }
+
   @media (max-width: 720px) {
     .home-sidebar {
       width: 100%;

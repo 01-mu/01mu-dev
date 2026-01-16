@@ -114,6 +114,17 @@ const tags = getAllTags(posts);
     margin: 0;
   }
 
+  @media (max-width: 1024px) {
+    .home-layout {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .home-content {
+      grid-column: auto;
+      width: 100%;
+    }
+  }
+
   @media (max-width: 720px) {
     .home-layout {
       grid-template-columns: minmax(0, 1fr);

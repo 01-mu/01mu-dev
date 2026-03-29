@@ -11,9 +11,13 @@ minimal so the writing stays quiet and readable.
 
 ## Local Development
 ```bash
-mise install
+nix --extra-experimental-features 'nix-command flakes' develop
 pnpm install
 pnpm run dev
+```
+Optional (direnv):
+```bash
+direnv allow
 ```
 
 ## Writing Workflow
@@ -36,7 +40,7 @@ pnpm test:e2e:update
 - Build command: `pnpm run build`
 - Output directory: `dist`
 - Production branch: `main`
-- Node version: match `.tool-versions` (mise).
+- Node version: 20 (match the Nix dev shell).
 
 ## Domain Notes
 - Domain: `01-mu.dev`

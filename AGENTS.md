@@ -8,6 +8,7 @@ These rules define the workflow policy for this repository.
 
 ## Branching model
 
+- Make changes on a separate working branch, not on `main` or `release/x.x.x`.
 - Development work should be merged into a release branch named `release/x.x.x`.
 - Release branches are the default integration path before merging to `main`.
 - Version meaning for `release/x.x.x`:
@@ -28,6 +29,7 @@ These rules define the workflow policy for this repository.
 
 ## Main branch protection
 
+- Do not edit files directly on `main`.
 - Do not merge directly into `main`.
 - The only allowed path to `main` is via a GitHub pull request from `release/x.x.x`.
 - The user must review and approve the pull request before merging.

@@ -18,6 +18,8 @@ These rules define the workflow policy for this repository.
 ## Release process
 
 - Releases must be performed by opening a pull request from `release/x.x.x` → `main`.
+- Do not edit files directly on a `release/x.x.x` branch.
+- Do not create direct commits on a `release/x.x.x` branch.
 
 ## Main branch protection
 

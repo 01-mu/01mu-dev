@@ -1,10 +1,22 @@
-<INSTRUCTIONS>
-# Agent Advisory (soft policy)
+# Agent Advisory
 
-- This project deploys to Cloudflare when merged to `main`.
-- Merge work into `dev` as the default path.
-- For releases, open a `dev` -> `main` PR.
-- Never merge into `main` except from `dev`, and only via a GitHub browser PR that the user approves.
-- User uses `git`; Codex uses `jj`.
-- Use `jj change`/`jj new` and bookmarks appropriately, and keep `jj describe` up to date.
-</INSTRUCTIONS>
+These rules define the workflow policy for this repository.
+
+## Deployment
+
+- The project deploys to Cloudflare when changes are merged into `main`.
+
+## Branching model
+
+- Development work should be merged into `dev`.
+- `dev` is the default integration branch.
+
+## Release process
+
+- Releases must be performed by opening a pull request from `dev` → `main`.
+
+## Main branch protection
+
+- Do not merge directly into `main`.
+- The only allowed path to `main` is via a GitHub pull request from `dev`.
+- The user must review and approve the pull request before merging.

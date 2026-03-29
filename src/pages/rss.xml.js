@@ -6,7 +6,7 @@ export async function GET(context) {
 
   return rss({
     title: "mu -> bit",
-    description: "Designing systems from nothing(mu / 無).",
+    description: "Designing systems from nothingness.",
     site: context.site,
     items: posts.map((post) => ({
       title: post.data.title,

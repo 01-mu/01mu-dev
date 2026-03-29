@@ -18,6 +18,7 @@ These rules define the workflow policy for this repository.
 ## Release process
 
 - Releases must be performed by opening a pull request from `release/x.x.x` → `main`.
+- Before merging `release/x.x.x` into `main`, always update `CHANGELOG.md` for that release.
 - Changelog policy follows the release version meaning:
 - The first `x` should be reflected in the changelog.
 - The second `x` may be omitted from the changelog when the change is minor.

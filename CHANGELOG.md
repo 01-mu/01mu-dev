@@ -4,6 +4,11 @@ This file records meaningful releases for the blog.
 
 It should summarize actual notable changes included in a release.
 
+## 1.1.0
+
+- Translated the published site copy and metadata from Japanese to English.
+- Clarified the branch workflow in `AGENTS.md` to require working branches before merging into `release/x.x.x` and promoting to `main`.
+
 ## 1.0.0
 
 - Added the first `CHANGELOG.md` for notable release tracking.

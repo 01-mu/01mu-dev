@@ -1,76 +1,76 @@
 ---
-title: "ブログを始めた"
+title: "Starting This Blog"
 date: 2026-01-16
 tags: ["blog", "notes"]
-description: "ブログを始めた理由と、最近の学び方や開発の変化について。"
+description: "Why I started this blog, and how my learning and development habits have been changing lately."
 draft: false
 ---
 
-もともと、何かしら発信はしたいなとはずっと思っており、ついに始めた。
-全世界に思考を垂れ流していこうと思う。
+I had wanted to publish something for a long time, and I finally started.
+I want to put my thoughts out into the world as they are.
 
 ---
 
-## 技術の話についていける感覚が変わってきた
+## My relationship with technical discussions has changed
 
-ここ最近、技術的な話題に対する向き合い方が、以前と比べてかなり変わってきたと感じている。
+Lately, I feel that the way I engage with technical topics has changed a lot compared with before.
 
-少し前までは、
+A little while ago, I often ran into:
 
-- Xで流れてくる難しそうな議論
-- 見たことのない用語や前提
-- 文脈が分からず置いていかれる感覚
+- difficult-looking debates drifting through X
+- unfamiliar terms and assumptions
+- the feeling of being left behind because I did not know the context
 
-こういったものに対して、正直「よく分からないから流す」ことが多かった。
+When that happened, I would often just let it pass because I did not understand it.
 
-今は、そうした投稿を**スクリーンショットで撮って、そのままChatGPTに貼り付ける**ことをよくやっている。
+Now, I often **take a screenshot of posts like that and paste it directly into ChatGPT**.
 
 ```
-これは何の話？
-どういう背景があるのか？
+What is this about?
+What background do I need to understand it?
 ```
 
-と聞くと、自分が理解できるレベルまで噛み砕いて説明してくれる。
+When I ask those questions, it breaks the topic down to a level I can actually follow.
 
-> 「分からないものをスルーする」
-> から
-> 「一度立ち止まって理解してみる」
+> "Ignore what I do not understand"
+> becomes
+> "Pause and try to understand it once"
 
-に行動が変わったのは、自分の中では大きな変化だった。
-見えている世界が広がったような感覚で、頭のいい人たちの会話の輪に入れているような気持ちになる。
-
----
-
-## Codex の影響
-
-開発面では、Codexを使うようになった影響も大きい。
-
-実装スピードが上がった、というよりも、
-
-- とりあえず触ってみる
-- まず動くものを作ってみる
-- 細かい部分は後から考える
-
-といった行動を取りやすくなった。
-
-バイブコーディングとはいえ実際に手を動かしてつくった成果物を読みながら理解するのは得意なので、うまく付き合えていると思う。
-このツールのおかげで、新技術に対するアンテナが以前よりも広がってきた感覚がある。
+That shift in behavior feels significant to me.
+It feels like my world has widened, and like I can finally step into conversations that used to feel out of reach.
 
 ---
 
-## このブログについて
+## The influence of Codex
 
-このブログでは、まず自分の思考を書き出すことを大事にしたい。
+On the development side, starting to use Codex has also had a big impact.
 
-- 自分が考えていること
-- 技術に触れて感じたこと
-- キャッチアップの途中経過
+It is not just that implementation got faster. More than that, it became easier to:
 
-を整理する場所として使っていく予定。
+- touch the thing and see what happens
+- build something that works first
+- leave the fine details for later
 
-今回の記事は、ChatGPTの音声にインタビュアーになってもらうことで、思考の整理を手伝ってもらった。
-やってみて思ったが、アイデア出しの手段としては最高！ \
-試しにインタビューの内容をもとに記事を書いてもらったりもしたけど、最終成果物として微妙だったのでそれは却下した。
+Those behaviors became much more natural.
 
-そんなこんなで。 \
-まずは始めてみることを優先して、無理のないペースで続けていくつもりだ。
+Even if people call it vibe coding, I am good at understanding things by reading the artifact after I have actually built it, so I think it suits me well.
+Because of this tool, I feel more open to new technologies than I used to be.
+
+---
+
+## About this blog
+
+With this blog, I want to prioritize writing down my own thinking.
+
+- what I am thinking about
+- what I feel when I work with technology
+- in-progress notes from what I am learning
+
+I plan to use it as a place to organize those things.
+
+For this post, I used ChatGPT voice mode as an interviewer to help me sort through my thoughts.
+After trying it, I think it is excellent for generating ideas. \
+I also tried having it write an article from the interview, but the final result felt weak, so I passed on that.
+
+So that is where this starts. \
+For now, I want to prioritize simply getting started and continuing at a pace I can sustain.

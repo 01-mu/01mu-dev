@@ -6,9 +6,9 @@ const { variant = "home" } = Astro.props;
 
 <aside
   class:list={[
-    "col-[3] self-start max-[1024px]:col-auto max-[720px]:order-2 max-[720px]:mt-6 max-[720px]:flex max-[720px]:w-full max-[720px]:justify-center",
+    "col-[3] self-start max-tablet:col-auto max-mobile:order-2 max-mobile:mt-6 max-mobile:flex max-mobile:w-full max-mobile:justify-center",
     variant === "post" &&
-      "sticky top-[5.5rem] flex flex-col max-[720px]:static max-[720px]:items-center",
+      "sticky top-[5.5rem] flex flex-col max-mobile:static max-mobile:items-center",
   ]}
 >
   <AuthorCard />

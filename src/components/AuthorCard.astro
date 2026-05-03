@@ -5,18 +5,18 @@ const {
 } = Astro.props;
 
 const authorLinkClass =
-  "inline-flex h-[18px] w-[18px] items-center justify-center text-[var(--muted)] transition-colors duration-150 hover:text-[var(--ink)]";
+  "inline-flex h-[18px] w-[18px] items-center justify-center text-muted transition-colors duration-150 hover:text-ink";
 const iconClass = "h-4 w-4";
 ---
 
 <div
-  class="grid justify-items-start gap-[0.35rem] text-left max-[720px]:mx-auto max-[720px]:w-fit max-[720px]:min-w-60 max-[720px]:self-center"
+  class="grid justify-items-start gap-[0.35rem] text-left max-mobile:mx-auto max-mobile:w-fit max-mobile:min-w-60 max-mobile:self-center"
 >
   <div class="flex items-center gap-4">
     <img
       src="/mu-icon.png"
       alt=""
-      class="h-[100px] w-[100px] rounded-xl border border-[var(--border)] bg-[var(--bg-paper)]"
+      class="h-[100px] w-[100px] rounded-xl border border-border bg-paper"
     />
     <div class="text-left">
       <div class="font-semibold">mu</div>

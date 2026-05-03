@@ -3,9 +3,10 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import Sidebar from "../components/Sidebar.astro";
 
 const homeLayoutClass =
-  "grid grid-cols-[minmax(0,1fr)_minmax(0,82ch)_220px_minmax(0,1fr)] items-start gap-10 max-[1024px]:grid-cols-[minmax(0,1fr)] max-[720px]:flex max-[720px]:flex-col";
+  "grid grid-cols-[minmax(0,1fr)_minmax(0,82ch)_220px_minmax(0,1fr)] items-start gap-10 max-tablet:grid-cols-[minmax(0,1fr)] max-mobile:flex max-mobile:flex-col";
 const homeContentClass =
-  "col-[2] min-w-0 bg-[var(--bg-paper)] px-11 pt-10 pb-[2.6rem] max-[1024px]:col-auto max-[1024px]:w-full max-[720px]:order-1 max-[720px]:px-6 max-[720px]:pt-8 max-[720px]:pb-9";
+  "col-[2] min-w-0 bg-paper px-11 pt-10 pb-[2.6rem] max-tablet:col-auto max-tablet:w-full max-mobile:order-1 max-mobile:px-6 max-mobile:pt-8 max-mobile:pb-9";
+const pageTitleClass = "mt-0";
 ---
 
 <BaseLayout title="About" mainClass="main--home">
@@ -16,7 +17,7 @@ const homeContentClass =
         page grows. Please ask before re-enabling or repurposing this element.
       */}
       {/* <div class="about-icon" aria-hidden="true">01</div> */}
-      <h1 class="page-title">About</h1>
+      <h1 class={pageTitleClass}>About</h1>
       <p>
         I write and build under the name mu.<br />
         I am a software engineer from Hokkaido.<br />

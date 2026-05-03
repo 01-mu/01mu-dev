@@ -6,19 +6,23 @@ import { getAllTags, getVisiblePosts } from "../../utils/posts";
 const posts = await getVisiblePosts();
 const tags = getAllTags(posts);
 const homeLayoutClass =
-  "grid grid-cols-[minmax(0,1fr)_minmax(0,82ch)_220px_minmax(0,1fr)] items-start gap-10 max-[1024px]:grid-cols-[minmax(0,1fr)] max-[720px]:flex max-[720px]:flex-col";
+  "grid grid-cols-[minmax(0,1fr)_minmax(0,82ch)_220px_minmax(0,1fr)] items-start gap-10 max-tablet:grid-cols-[minmax(0,1fr)] max-mobile:flex max-mobile:flex-col";
 const homeContentClass =
-  "col-[2] min-w-0 bg-[var(--bg-paper)] px-11 pt-10 pb-[2.6rem] max-[1024px]:col-auto max-[1024px]:w-full max-[720px]:order-1 max-[720px]:px-6 max-[720px]:pt-8 max-[720px]:pb-9";
+  "col-[2] min-w-0 bg-paper px-11 pt-10 pb-[2.6rem] max-tablet:col-auto max-tablet:w-full max-mobile:order-1 max-mobile:px-6 max-mobile:pt-8 max-mobile:pb-9";
+const proseMetaClass = "text-[0.95rem] text-muted";
+const pageTitleClass = "mt-0";
+const tagListClass = "flex flex-wrap gap-x-[0.6rem] gap-y-[0.4rem]";
+const tagPillClass = "text-[0.85rem] text-muted";
 ---
 
 <BaseLayout title="Tags" mainClass="main--home">
   <div class={homeLayoutClass}>
     <section class={homeContentClass}>
-      <h1 class="page-title">Tags</h1>
-      <div class="tag-list">
-        {tags.length === 0 && <span class="prose-meta">No tags yet.</span>}
+      <h1 class={pageTitleClass}>Tags</h1>
+      <div class={tagListClass}>
+        {tags.length === 0 && <span class={proseMetaClass}>No tags yet.</span>}
         {tags.map(({ tag, count }) => (
-          <a class="tag-pill" href={`/tags/${encodeURIComponent(tag)}`}>
+          <a class={tagPillClass} href={`/tags/${encodeURIComponent(tag)}`}>
             {tag} ({count})
           </a>
         ))}

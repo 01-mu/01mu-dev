@@ -14,25 +14,27 @@ const posts = await getVisiblePosts();
 const { tag } = Astro.params;
 const taggedPosts = posts.filter((post) => post.data.tags.includes(tag));
 const homeLayoutClass =
-  "grid grid-cols-[minmax(0,1fr)_minmax(0,82ch)_220px_minmax(0,1fr)] items-start gap-10 max-[1024px]:grid-cols-[minmax(0,1fr)] max-[720px]:flex max-[720px]:flex-col";
+  "grid grid-cols-[minmax(0,1fr)_minmax(0,82ch)_220px_minmax(0,1fr)] items-start gap-10 max-tablet:grid-cols-[minmax(0,1fr)] max-mobile:flex max-mobile:flex-col";
 const homeContentClass =
-  "col-[2] min-w-0 bg-[var(--bg-paper)] px-11 pt-10 pb-[2.6rem] max-[1024px]:col-auto max-[1024px]:w-full max-[720px]:order-1 max-[720px]:px-6 max-[720px]:pt-8 max-[720px]:pb-9";
+  "col-[2] min-w-0 bg-paper px-11 pt-10 pb-[2.6rem] max-tablet:col-auto max-tablet:w-full max-mobile:order-1 max-mobile:px-6 max-mobile:pt-8 max-mobile:pb-9";
+const proseMetaClass = "text-[0.95rem] text-muted";
+const pageTitleClass = "mt-0";
 ---
 
 <BaseLayout title={`Tag: ${tag}`} mainClass="main--home">
   <div class={homeLayoutClass}>
     <section class={homeContentClass}>
-      <h1 class="page-title">Tag: {tag}</h1>
+      <h1 class={pageTitleClass}>Tag: {tag}</h1>
       {taggedPosts.length === 0 ? (
-        <p class="prose-meta">No posts for this tag yet.</p>
+        <p class={proseMetaClass}>No posts for this tag yet.</p>
       ) : (
         <ul class="m-0 list-none p-0">
           {taggedPosts.map((post) => (
-            <li class="border-b border-[var(--border)] py-5">
+            <li class="border-b border-border py-5">
               <a class="block text-[1.1rem] font-[560]" href={`/posts/${post.slug}`}>
                 {post.data.title}
               </a>
-              <div class="text-[0.9rem] text-[var(--muted)]">
+              <div class="text-[0.9rem] text-muted">
                 {post.data.date.toLocaleDateString("en-US", {
                   year: "numeric",
                   month: "short",

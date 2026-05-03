@@ -31,12 +31,12 @@ const linkClass =
   <div class="toc-root">
     <nav class:list={["toc", navClass]} aria-label="Table of contents">
       <p
-        class="m-0 mb-3 text-[0.85rem] tracking-[0.04em] text-[var(--muted)] uppercase max-[720px]:hidden"
+        class="m-0 mb-3 text-[0.85rem] tracking-[0.04em] text-muted uppercase max-mobile:hidden"
       >
         {title}
       </p>
-      <ul class="m-0 grid list-none gap-[0.35rem] p-0 text-[0.9rem] text-[var(--muted)]">
-        <li class="min-[721px]:hidden">
+      <ul class="m-0 grid list-none gap-[0.35rem] p-0 text-[0.9rem] text-muted">
+        <li class="desktop:hidden">
           <a href="#top" data-toc-link="top" class={linkClass}>Return to top</a>
         </li>
         {visibleHeadings.map((heading) => (
@@ -116,12 +116,12 @@ const linkClass =
     };
     const pad = 48;
     const activeClasses = [
-      "bg-[color-mix(in_srgb,var(--ink)_8%,transparent)]",
+      "bg-ink-soft",
       "font-semibold",
-      "text-[var(--ink)]",
+      "text-ink",
     ];
     const pastClasses = [
-      "text-[var(--ink)]",
+      "text-ink",
       "opacity-65",
     ];
     const setActiveIndex = (activeIndex) => {

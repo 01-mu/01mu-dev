@@ -29,24 +29,28 @@ const formattedDate = new Date(date).toLocaleDateString("en-US", {
   month: "long",
   day: "numeric",
 });
+const proseMetaClass = "text-[0.95rem] text-muted";
+const pageTitleClass = "mt-0";
+const tagListClass = "flex flex-wrap gap-x-[0.6rem] gap-y-[0.4rem]";
+const tagPillClass = "text-[0.85rem] text-muted";
 ---
 
 <BaseLayout title={title} description={description} mainClass="main--post">
   <div
-    class="grid grid-cols-[minmax(0,1fr)_minmax(0,82ch)_220px_minmax(0,1fr)] items-start gap-10 max-[720px]:flex max-[720px]:flex-col"
+    class="grid grid-cols-[minmax(0,1fr)_minmax(0,82ch)_220px_minmax(0,1fr)] items-start gap-10 max-mobile:flex max-mobile:flex-col"
   >
     <article
-      class="col-[2] min-w-0 bg-[var(--bg-paper)] px-11 pt-10 pb-[2.6rem] max-[720px]:order-1 max-[720px]:col-auto max-[720px]:px-6 max-[720px]:pt-8 max-[720px]:pb-9"
+      class="col-[2] min-w-0 bg-paper px-11 pt-10 pb-[2.6rem] max-mobile:order-1 max-mobile:col-auto max-mobile:px-6 max-mobile:pt-8 max-mobile:pb-9"
       id="top"
       lang="en"
     >
-      <p class="prose-meta">{formattedDate}</p>
-      <h1 class="page-title">{title}</h1>
+      <p class={proseMetaClass}>{formattedDate}</p>
+      <h1 class={pageTitleClass}>{title}</h1>
       {
         tags.length > 0 && (
-          <div class="tag-list">
+          <div class={tagListClass}>
             {tags.map((tag) => (
-              <a class="tag-pill" href={`/tags/${encodeURIComponent(tag)}`}>
+              <a class={tagPillClass} href={`/tags/${encodeURIComponent(tag)}`}>
                 {tag}
               </a>
             ))}
@@ -57,23 +61,23 @@ const formattedDate = new Date(date).toLocaleDateString("en-US", {
     </article>
     <Sidebar variant="post">
       <div
-        class="my-0 mt-6 mb-5 h-px bg-[var(--border)] max-[720px]:hidden"
+        class="my-0 mt-6 mb-5 h-px bg-border max-mobile:hidden"
         aria-hidden="true"
       >
       </div>
       <div
-        class="toc-panel fixed top-[4.5rem] right-4 left-4 z-20 hidden max-h-[60vh] overflow-y-auto rounded-[10px] border border-[var(--border)] bg-[var(--bg-paper)] p-4 shadow-[0_12px_30px_rgba(28,42,51,0.15)]"
+        class="toc-panel fixed top-[4.5rem] right-4 left-4 z-20 hidden max-h-[60vh] overflow-y-auto rounded-[10px] border border-border bg-paper p-4 shadow-[0_12px_30px_rgba(28,42,51,0.15)]"
         id="mobile-toc-panel"
       >
         <TableOfContents headings={headings} contained />
       </div>
-      <div class="toc-inline hidden min-[721px]:block">
+      <div class="toc-inline hidden desktop:block">
         <TableOfContents headings={headings} />
       </div>
     </Sidebar>
   </div>
   <button
-    class="toc-toggle fixed top-4 right-4 z-[21] hidden items-center gap-[0.35rem] rounded-full border border-[var(--border)] bg-[var(--bg-paper)] px-3 py-[0.45rem] text-[0.85rem] text-[var(--ink)] max-[720px]:inline-flex"
+    class="toc-toggle fixed top-4 right-4 z-[21] hidden items-center gap-[0.35rem] rounded-full border border-border bg-paper px-3 py-[0.45rem] text-[0.85rem] text-ink max-mobile:inline-flex"
     type="button"
     aria-controls="mobile-toc-panel"
     aria-expanded="false"

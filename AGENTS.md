@@ -4,11 +4,12 @@ These rules define the workflow policy for this repository.
 
 ## Deployment
 
-- The project deploys to Cloudflare when changes are merged into `main`.
+- The project deploys to Cloudflare when changes are pushed or merged into `main`.
 
 ## Branching model
 
-- Make changes on a separate working branch, not on `main` or `release/x.x.x`.
+- Changes may be made directly on `main` when the user requests it.
+- For release branch work, make changes on a separate working branch, not on `release/x.x.x`.
 - Development work should be merged into a release branch named `release/x.x.x`.
 - Release branches are the default integration path before merging to `main`.
 - Version meaning for `release/x.x.x`:
@@ -27,9 +28,7 @@ These rules define the workflow policy for this repository.
 - Do not edit files directly on a `release/x.x.x` branch.
 - Do not create direct commits on a `release/x.x.x` branch.
 
-## Main branch protection
+## Main branch workflow
 
-- Do not edit files directly on `main`.
-- Do not merge directly into `main`.
-- The only allowed path to `main` is via a GitHub pull request from `release/x.x.x`.
-- The user must review and approve the pull request before merging.
+- Direct edits, commits, pushes, and merges to `main` are allowed when the user requests them.
+- When using a release branch, the user should review and approve the pull request before merging.

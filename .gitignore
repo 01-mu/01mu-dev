@@ -20,6 +20,7 @@ test-results/
 
 # Terraform
 .terraform/
+tfplan
 
 # environment variables
 .env

@@ -4,42 +4,13 @@ import AuthorCard from "./AuthorCard.astro";
 const { variant = "home" } = Astro.props;
 ---
 
-<aside class:list={["home-sidebar", variant === "post" && "home-sidebar--post"]}>
+<aside
+  class:list={[
+    "col-[3] self-start max-[1024px]:col-auto max-[720px]:order-2 max-[720px]:mt-6 max-[720px]:flex max-[720px]:w-full max-[720px]:justify-center",
+    variant === "post" &&
+      "sticky top-[5.5rem] flex flex-col max-[720px]:static max-[720px]:items-center",
+  ]}
+>
   <AuthorCard />
   <slot />
 </aside>
-
-<style>
-  .home-sidebar {
-    align-self: start;
-    grid-column: 3;
-  }
-
-  .home-sidebar--post {
-    position: sticky;
-    top: 5.5rem;
-    display: flex;
-    flex-direction: column;
-  }
-
-  @media (max-width: 1024px) {
-    .home-sidebar {
-      grid-column: auto;
-    }
-  }
-
-  @media (max-width: 720px) {
-    .home-sidebar {
-      width: 100%;
-      order: 2;
-      margin-top: 1.5rem;
-      display: flex;
-      justify-content: center;
-    }
-
-    .home-sidebar--post {
-      position: static;
-      align-items: center;
-    }
-  }
-</style>

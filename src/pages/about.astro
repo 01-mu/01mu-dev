@@ -1,11 +1,16 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Sidebar from "../components/Sidebar.astro";
+
+const homeLayoutClass =
+  "grid grid-cols-[minmax(0,1fr)_minmax(0,82ch)_220px_minmax(0,1fr)] items-start gap-10 max-[1024px]:grid-cols-[minmax(0,1fr)] max-[720px]:flex max-[720px]:flex-col";
+const homeContentClass =
+  "col-[2] min-w-0 bg-[var(--bg-paper)] px-11 pt-10 pb-[2.6rem] max-[1024px]:col-auto max-[1024px]:w-full max-[720px]:order-1 max-[720px]:px-6 max-[720px]:pt-8 max-[720px]:pb-9";
 ---
 
 <BaseLayout title="About" mainClass="main--home">
-  <div class="home-layout">
-    <section class="home-content">
+  <div class={homeLayoutClass}>
+    <section class={homeContentClass}>
       {/*
         Reserve the "about-icon" slot for future section numbering once the About
         page grows. Please ask before re-enabling or repurposing this element.
@@ -36,56 +41,3 @@ import Sidebar from "../components/Sidebar.astro";
     <Sidebar />
   </div>
 </BaseLayout>
-
-<style>
-  .about-icon {
-    width: 42px;
-    height: 42px;
-    border-radius: 999px;
-    border: 1px solid var(--border);
-    display: grid;
-    place-items: center;
-    font-weight: 600;
-    margin-bottom: 1.5rem;
-  }
-
-  .home-layout {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 82ch) 220px minmax(0, 1fr);
-    gap: 2.5rem;
-    align-items: start;
-  }
-
-  .home-content {
-    min-width: 0;
-    grid-column: 2;
-    background: var(--bg-paper);
-    padding: 2.5rem 2.75rem 2.6rem;
-  }
-
-
-  @media (max-width: 1024px) {
-    .home-layout {
-      grid-template-columns: minmax(0, 1fr);
-    }
-
-    .home-content {
-      grid-column: auto;
-      width: 100%;
-    }
-  }
-
-  @media (max-width: 720px) {
-    .home-layout {
-      grid-template-columns: minmax(0, 1fr);
-      display: flex;
-      flex-direction: column;
-    }
-
-    .home-content {
-      grid-column: auto;
-      order: 1;
-      padding: 2rem 1.5rem 2.25rem;
-    }
-  }
-</style>

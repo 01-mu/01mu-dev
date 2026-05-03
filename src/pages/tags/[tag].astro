@@ -13,20 +13,26 @@ export async function getStaticPaths() {
 const posts = await getVisiblePosts();
 const { tag } = Astro.params;
 const taggedPosts = posts.filter((post) => post.data.tags.includes(tag));
+const homeLayoutClass =
+  "grid grid-cols-[minmax(0,1fr)_minmax(0,82ch)_220px_minmax(0,1fr)] items-start gap-10 max-[1024px]:grid-cols-[minmax(0,1fr)] max-[720px]:flex max-[720px]:flex-col";
+const homeContentClass =
+  "col-[2] min-w-0 bg-[var(--bg-paper)] px-11 pt-10 pb-[2.6rem] max-[1024px]:col-auto max-[1024px]:w-full max-[720px]:order-1 max-[720px]:px-6 max-[720px]:pt-8 max-[720px]:pb-9";
 ---
 
 <BaseLayout title={`Tag: ${tag}`} mainClass="main--home">
-  <div class="home-layout">
-    <section class="home-content">
+  <div class={homeLayoutClass}>
+    <section class={homeContentClass}>
       <h1 class="page-title">Tag: {tag}</h1>
       {taggedPosts.length === 0 ? (
         <p class="prose-meta">No posts for this tag yet.</p>
       ) : (
-        <ul class="post-list">
+        <ul class="m-0 list-none p-0">
           {taggedPosts.map((post) => (
-            <li>
-              <a class="title" href={`/posts/${post.slug}`}>{post.data.title}</a>
-              <div class="meta">
+            <li class="border-b border-[var(--border)] py-5">
+              <a class="block text-[1.1rem] font-[560]" href={`/posts/${post.slug}`}>
+                {post.data.title}
+              </a>
+              <div class="text-[0.9rem] text-[var(--muted)]">
                 {post.data.date.toLocaleDateString("en-US", {
                   year: "numeric",
                   month: "short",
@@ -41,67 +47,3 @@ const taggedPosts = posts.filter((post) => post.data.tags.includes(tag));
     <Sidebar />
   </div>
 </BaseLayout>
-
-<style>
-  .post-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  .post-list li {
-    padding: 1.25rem 0;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .post-list .title {
-    display: block;
-    font-size: 1.1rem;
-    font-weight: 560;
-  }
-
-  .post-list .meta {
-    color: var(--muted);
-    font-size: 0.9rem;
-  }
-
-  .home-layout {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 82ch) 220px minmax(0, 1fr);
-    gap: 2.5rem;
-    align-items: start;
-  }
-
-  .home-content {
-    min-width: 0;
-    grid-column: 2;
-    background: var(--bg-paper);
-    padding: 2.5rem 2.75rem 2.6rem;
-  }
-
-
-  @media (max-width: 1024px) {
-    .home-layout {
-      grid-template-columns: minmax(0, 1fr);
-    }
-
-    .home-content {
-      grid-column: auto;
-      width: 100%;
-    }
-  }
-
-  @media (max-width: 720px) {
-    .home-layout {
-      grid-template-columns: minmax(0, 1fr);
-      display: flex;
-      flex-direction: column;
-    }
-
-    .home-content {
-      grid-column: auto;
-      order: 1;
-      padding: 2rem 1.5rem 2.25rem;
-    }
-  }
-</style>

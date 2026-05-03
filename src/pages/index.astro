@@ -5,20 +5,29 @@ import { getAllTags, getVisiblePosts } from "../utils/posts";
 
 const posts = await getVisiblePosts();
 const tags = getAllTags(posts);
+const homeLayoutClass =
+  "grid grid-cols-[minmax(0,1fr)_minmax(0,82ch)_220px_minmax(0,1fr)] items-start gap-10 max-[1024px]:grid-cols-[minmax(0,1fr)] max-[720px]:flex max-[720px]:flex-col";
+const homeContentClass =
+  "col-[2] min-w-0 bg-[var(--bg-paper)] px-11 pt-8 pb-[2.6rem] max-[1024px]:col-auto max-[1024px]:w-full max-[720px]:order-1 max-[720px]:px-6 max-[720px]:pt-6 max-[720px]:pb-9";
 ---
 
 <BaseLayout description="Quiet notes for long-form thinking." mainClass="main--home">
-  <div class="home-layout">
-    <section class="home-content">
+  <div class={homeLayoutClass}>
+    <section class={homeContentClass}>
       <h1 class="page-title">Latest writing</h1>
       {posts.length === 0 ? (
         <p class="prose-meta">No published posts yet.</p>
       ) : (
-        <ul class="post-list">
+        <ul class="m-0 list-none p-0">
           {posts.map((post) => (
-            <li>
-              <a class="title" href={`/posts/${post.slug}`}>{post.data.title}</a>
-              <div class="meta">
+            <li class="border-b border-[var(--border)] py-5">
+              <a
+                class="block text-[1.1rem] font-[560] max-[720px]:hover:border-b-transparent max-[720px]:focus-visible:border-b-transparent"
+                href={`/posts/${post.slug}`}
+              >
+                {post.data.title}
+              </a>
+              <div class="text-[0.9rem] text-[var(--muted)]">
                 {post.data.date.toLocaleDateString("en-US", {
                   year: "numeric",
                   month: "short",
@@ -39,9 +48,13 @@ const tags = getAllTags(posts);
     <Sidebar>
       {tags.length > 0 && (
         <>
-          <div class="sidebar-divider" aria-hidden="true"></div>
-          <div class="tag-card home-tag-card">
-            <p class="tag-card-title">Tags</p>
+          <div
+            class="my-0 mt-6 mb-5 h-px bg-[var(--border)] max-[720px]:hidden"
+            aria-hidden="true"
+          >
+          </div>
+          <div class="mt-[1.2rem] grid gap-2 max-[720px]:hidden">
+            <p class="m-0 text-[0.8rem] tracking-[0.04em] text-[var(--muted)] uppercase">Tags</p>
             <div class="tag-list">
               {tags.map(({ tag, count }) => (
                 <a class="tag-pill" href={`/tags/${encodeURIComponent(tag)}`}>
@@ -55,101 +68,3 @@ const tags = getAllTags(posts);
     </Sidebar>
   </div>
 </BaseLayout>
-
-<style>
-  .home-layout {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 82ch) 220px minmax(0, 1fr);
-    gap: 2.5rem;
-    align-items: start;
-  }
-
-  .home-content {
-    min-width: 0;
-    grid-column: 2;
-    background: var(--bg-paper);
-    padding: 2rem 2.75rem 2.6rem;
-  }
-
-
-  .post-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  .post-list li {
-    padding: 1.25rem 0;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .post-list .title {
-    display: block;
-    font-size: 1.1rem;
-    font-weight: 560;
-  }
-
-  .post-list .meta {
-    color: var(--muted);
-    font-size: 0.9rem;
-  }
-
-  .sidebar-divider {
-    height: 1px;
-    background: var(--border);
-    margin: 1.5rem 0 1.25rem;
-  }
-
-  .tag-card {
-    margin-top: 1.2rem;
-    display: grid;
-    gap: 0.5rem;
-  }
-
-  .tag-card-title {
-    font-size: 0.8rem;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin: 0;
-  }
-
-  @media (max-width: 1024px) {
-    .home-layout {
-      grid-template-columns: minmax(0, 1fr);
-    }
-
-    .home-content {
-      grid-column: auto;
-      width: 100%;
-    }
-  }
-
-  @media (max-width: 720px) {
-    .home-layout {
-      grid-template-columns: minmax(0, 1fr);
-      display: flex;
-      flex-direction: column;
-    }
-
-    .post-list .title:hover,
-    .post-list .title:focus-visible {
-      border-bottom-color: transparent;
-    }
-
-    .home-tag-card {
-      display: none;
-    }
-
-    .sidebar-divider {
-      display: none;
-    }
-
-    .home-content {
-      /* Mobile: reset the grid column so the content centers correctly. */
-      grid-column: auto;
-      order: 1;
-      padding: 1.5rem 1.5rem 2.25rem;
-    }
-  }
-</style>

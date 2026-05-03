@@ -32,8 +32,14 @@ const formattedDate = new Date(date).toLocaleDateString("en-US", {
 ---
 
 <BaseLayout title={title} description={description} mainClass="main--post">
-  <div class="post-layout">
-    <article class="post-content" id="top" lang="en">
+  <div
+    class="grid grid-cols-[minmax(0,1fr)_minmax(0,82ch)_220px_minmax(0,1fr)] items-start gap-10 max-[720px]:flex max-[720px]:flex-col"
+  >
+    <article
+      class="col-[2] min-w-0 bg-[var(--bg-paper)] px-11 pt-10 pb-[2.6rem] max-[720px]:order-1 max-[720px]:col-auto max-[720px]:px-6 max-[720px]:pt-8 max-[720px]:pb-9"
+      id="top"
+      lang="en"
+    >
       <p class="prose-meta">{formattedDate}</p>
       <h1 class="page-title">{title}</h1>
       {
@@ -50,22 +56,29 @@ const formattedDate = new Date(date).toLocaleDateString("en-US", {
       <slot />
     </article>
     <Sidebar variant="post">
-      <div class="sidebar-divider" aria-hidden="true"></div>
-      <div class="toc-panel" id="mobile-toc-panel">
-        <TableOfContents headings={headings} />
+      <div
+        class="my-0 mt-6 mb-5 h-px bg-[var(--border)] max-[720px]:hidden"
+        aria-hidden="true"
+      >
       </div>
-      <div class="toc-inline">
+      <div
+        class="toc-panel fixed top-[4.5rem] right-4 left-4 z-20 hidden max-h-[60vh] overflow-y-auto rounded-[10px] border border-[var(--border)] bg-[var(--bg-paper)] p-4 shadow-[0_12px_30px_rgba(28,42,51,0.15)]"
+        id="mobile-toc-panel"
+      >
+        <TableOfContents headings={headings} contained />
+      </div>
+      <div class="toc-inline hidden min-[721px]:block">
         <TableOfContents headings={headings} />
       </div>
     </Sidebar>
   </div>
   <button
-    class="toc-toggle"
+    class="toc-toggle fixed top-4 right-4 z-[21] hidden items-center gap-[0.35rem] rounded-full border border-[var(--border)] bg-[var(--bg-paper)] px-3 py-[0.45rem] text-[0.85rem] text-[var(--ink)] max-[720px]:inline-flex"
     type="button"
     aria-controls="mobile-toc-panel"
     aria-expanded="false"
   >
-    <svg viewBox="0 0 24 24" aria-hidden="true" class="toc-icon">
+    <svg viewBox="0 0 24 24" aria-hidden="true" class="h-4 w-4">
       <path
         fill="currentColor"
         d="M4 6.5h16v2H4v-2Zm0 5h10v2H4v-2Zm0 5h13v2H4v-2Z"></path>
@@ -74,118 +87,6 @@ const formattedDate = new Date(date).toLocaleDateString("en-US", {
   </button>
 </BaseLayout>
 
-<style>
-  .post-layout {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 82ch) 220px minmax(0, 1fr);
-    gap: 2.5rem;
-    align-items: start;
-  }
-
-  .post-content {
-    min-width: 0;
-    grid-column: 2;
-    background: var(--bg-paper);
-    padding: 2.5rem 2.75rem 2.6rem;
-  }
-
-  .toc-panel {
-    display: none;
-  }
-
-  .toc-toggle {
-    display: none;
-  }
-
-  .sidebar-divider {
-    height: 1px;
-    background: var(--border);
-    margin: 1.5rem 0 1.25rem;
-  }
-
-  @media (max-width: 720px) {
-    .post-layout {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .post-content {
-      grid-column: auto;
-      order: 1;
-      padding: 2rem 1.5rem 2.25rem;
-    }
-
-    .sidebar-divider {
-      display: none;
-    }
-
-    .toc-panel {
-      position: fixed;
-      display: none;
-      top: 4.5rem;
-      right: 1rem;
-      left: 1rem;
-      max-height: 60vh;
-      overflow-y: auto;
-      background: var(--bg-paper);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 1rem;
-      box-shadow: 0 12px 30px rgba(28, 42, 51, 0.15);
-      z-index: 20;
-    }
-
-    .toc-toggle {
-      display: inline-flex;
-    }
-
-    :global(body.toc-open) .toc-panel {
-      display: block;
-    }
-
-    .toc-inline {
-      display: none;
-    }
-
-  }
-
-  .toc-inline {
-    display: none;
-  }
-
-  @media (min-width: 721px) {
-    .toc-inline {
-      display: block;
-    }
-  }
-
-  :global(.toc-panel .toc) {
-    max-height: none;
-    overflow: visible;
-    padding-right: 0;
-  }
-
-  .toc-icon {
-    width: 16px;
-    height: 16px;
-  }
-
-  .toc-toggle {
-    position: fixed;
-    top: 1rem;
-    right: 1rem;
-    z-index: 21;
-    align-items: center;
-    gap: 0.35rem;
-    padding: 0.45rem 0.75rem;
-    border-radius: 999px;
-    border: 1px solid var(--border);
-    background: var(--bg-paper);
-    color: var(--ink);
-    font-size: 0.85rem;
-  }
-</style>
-
 <script>
   const toggle = document.querySelector(".toc-toggle");
   const panel = document.querySelector("#mobile-toc-panel");
@@ -193,6 +94,8 @@ const formattedDate = new Date(date).toLocaleDateString("en-US", {
   if (toggle && panel) {
     const update = (open = false) => {
       document.body.classList.toggle("toc-open", open);
+      panel.classList.toggle("hidden", !open);
+      panel.classList.toggle("block", open);
       toggle.setAttribute("aria-expanded", open ? "true" : "false");
     };
 

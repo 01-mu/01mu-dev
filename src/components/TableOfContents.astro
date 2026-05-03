@@ -9,28 +9,43 @@ const {
   headings = [],
   levels = [2, 3],
   title = "On this page",
+  contained = false,
 } = Astro.props as {
   headings?: TocHeading[];
   levels?: number[];
   title?: string;
+  contained?: boolean;
 };
 
 const visibleHeadings = headings.filter((heading) =>
   levels.includes(heading.depth),
 );
+const navClass = contained
+  ? "max-h-none overflow-visible pr-0"
+  : "max-h-[calc(100vh-16rem)] overflow-y-auto pr-2";
+const linkClass =
+  "relative rounded-md px-[0.45rem] py-[0.15rem] text-inherit transition-[color,opacity,background-color] duration-150";
 ---
 
 {visibleHeadings.length > 0 && (
   <div class="toc-root">
-    <nav class="toc" aria-label="Table of contents">
-      <p class="toc-title">{title}</p>
-      <ul class="toc-list">
-        <li class="toc-item toc-item--top">
-          <a href="#top" data-toc-link="top">Return to top</a>
+    <nav class:list={["toc", navClass]} aria-label="Table of contents">
+      <p
+        class="m-0 mb-3 text-[0.85rem] tracking-[0.04em] text-[var(--muted)] uppercase max-[720px]:hidden"
+      >
+        {title}
+      </p>
+      <ul class="m-0 grid list-none gap-[0.35rem] p-0 text-[0.9rem] text-[var(--muted)]">
+        <li class="min-[721px]:hidden">
+          <a href="#top" data-toc-link="top" class={linkClass}>Return to top</a>
         </li>
         {visibleHeadings.map((heading) => (
-          <li class={`toc-item depth-${heading.depth}`}>
-            <a href={`#${heading.slug}`} data-toc-link={heading.slug}>
+          <li class:list={[heading.depth === 3 && "pl-[0.9rem]"]}>
+            <a
+              href={`#${heading.slug}`}
+              data-toc-link={heading.slug}
+              class={linkClass}
+            >
               {heading.text}
             </a>
           </li>
@@ -100,10 +115,23 @@ const visibleHeadings = headings.filter((heading) =>
       scrollAnimId = requestAnimationFrame(step);
     };
     const pad = 48;
+    const activeClasses = [
+      "bg-[color-mix(in_srgb,var(--ink)_8%,transparent)]",
+      "font-semibold",
+      "text-[var(--ink)]",
+    ];
+    const pastClasses = [
+      "text-[var(--ink)]",
+      "opacity-65",
+    ];
     const setActiveIndex = (activeIndex) => {
       links.forEach((link, index) => {
-        link.classList.toggle("is-active", index === activeIndex);
-        link.classList.toggle("is-past", index < activeIndex);
+        activeClasses.forEach((className) => {
+          link.classList.toggle(className, index === activeIndex);
+        });
+        pastClasses.forEach((className) => {
+          link.classList.toggle(className, index < activeIndex);
+        });
       });
 
       if (activeIndex !== lastActiveIndex) {
@@ -179,64 +207,3 @@ const visibleHeadings = headings.filter((heading) =>
     initAll();
   }
 </script>
-
-<style>
-  .toc {
-    max-height: calc(100vh - 16rem);
-    overflow-y: auto;
-    padding-right: 0.5rem;
-  }
-
-  .toc-title {
-    font-size: 0.85rem;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin: 0 0 0.75rem;
-  }
-
-  .toc-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: grid;
-    gap: 0.35rem;
-    font-size: 0.9rem;
-    color: var(--muted);
-  }
-
-  .toc-item a {
-    color: inherit;
-    position: relative;
-    padding: 0.15rem 0.45rem;
-    border-radius: 6px;
-    transition: color 160ms ease, opacity 160ms ease, background-color 160ms ease;
-  }
-
-  .toc-item a.is-active {
-    color: var(--ink);
-    font-weight: 600;
-    background: color-mix(in srgb, var(--ink) 8%, transparent);
-  }
-
-  .toc-item a.is-past {
-    color: var(--ink);
-    opacity: 0.65;
-  }
-
-  .toc-item.depth-3 {
-    padding-left: 0.9rem;
-  }
-
-  @media (max-width: 720px) {
-    .toc-title {
-      display: none;
-    }
-  }
-
-  @media (min-width: 721px) {
-    .toc-item--top {
-      display: none;
-    }
-  }
-</style>

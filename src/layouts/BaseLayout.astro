@@ -2,7 +2,7 @@
 import "../styles/global.css";
 
 const { title, description, mainClass = "main--page" } = Astro.props;
-const siteTitle = "mu -> bit";
+const siteTitle = "mu log";
 const siteTagline = "Designing systems from nothing(mu / 無).";
 const pageTitle = title ? `${title} · ${siteTitle}` : siteTitle;
 const pageDescription = description ?? siteTagline;
@@ -31,7 +31,7 @@ const pageDescription = description ?? siteTagline;
   <body>
     <header class="site-header">
       <div class="site-brand">
-        <a href="/" class="site-title-link" aria-label="mu to bit">
+        <a href="/" class="site-title-link" aria-label="mu log">
           {siteTitle}
         </a>
         <div class="site-tagline">{siteTagline}</div>

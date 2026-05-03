@@ -1,6 +1,6 @@
-# 01mu-dev
+# mu log
 
-A calm, long-form English personal blog for 01-mu. The site is intentionally
+A calm, long-form English personal blog for mu. The site is intentionally
 minimal so the writing stays quiet and readable.
 
 ## Public Repository Security Policy

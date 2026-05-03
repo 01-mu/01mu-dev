@@ -30,12 +30,6 @@ direnv allow
 bun astro check
 ```
 
-## Visual Snapshots (Playwright)
-```bash
-bun run test:e2e:update
-```
-- Snapshots are saved under `e2e/snapshots/`.
-
 ## Deployment (Cloudflare Pages GUI)
 - Build command: `bun run build`
 - Output directory: `dist`

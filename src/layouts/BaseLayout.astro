@@ -6,6 +6,18 @@ const siteTitle = "mu log";
 const siteTagline = "Designing systems from nothing(mu / 無).";
 const pageTitle = title ? `${title} · ${siteTitle}` : siteTitle;
 const pageDescription = description ?? siteTagline;
+const mainClasses = [
+  mainClass,
+  "mx-auto min-h-[70vh] flex-1 bg-[var(--bg-paper)]",
+  mainClass === "main--post" &&
+    "max-w-none bg-transparent px-0 pt-6 pb-[3.2rem] max-[720px]:pt-10 max-[720px]:pb-[2.8rem]",
+  mainClass === "main--home" &&
+    "max-w-none bg-transparent px-0 pt-6 pb-[3.2rem] max-[1024px]:m-0 max-[720px]:pt-[1.2rem] max-[720px]:pb-[2.8rem]",
+  mainClass === "main--page" &&
+    "max-w-none px-0 pt-6 pb-[3.2rem] max-[720px]:pt-[1.2rem] max-[720px]:pb-[2.8rem]",
+  !["main--post", "main--home", "main--page"].includes(mainClass) &&
+    "max-w-[76ch] px-6 pt-14 pb-[3.2rem] max-[720px]:px-5 max-[720px]:pt-10 max-[720px]:pb-[2.8rem]",
+];
 ---
 
 <!DOCTYPE html>
@@ -28,154 +40,35 @@ const pageDescription = description ?? siteTagline;
       rel="stylesheet"
     />
   </head>
-  <body>
-    <header class="site-header">
-      <div class="site-brand">
-        <a href="/" class="site-title-link" aria-label="mu log">
+  <body class="flex min-h-screen flex-col">
+    <header
+      class="flex w-full items-baseline justify-between gap-4 px-8 pt-[1.2rem] max-[720px]:flex-col max-[720px]:items-start max-[720px]:gap-3 max-[720px]:px-6 max-[720px]:pt-5"
+    >
+      <div class="flex flex-col gap-[0.06rem] pb-4 text-left">
+        <a
+          href="/"
+          class="text-[1.8rem] font-semibold tracking-[0.01em]"
+          aria-label="mu log"
+        >
           {siteTitle}
         </a>
-        <div class="site-tagline">{siteTagline}</div>
+        <div class="text-[0.95rem] text-[var(--muted)]">{siteTagline}</div>
       </div>
-      <nav class="site-nav">
+      <nav
+        class="flex justify-end gap-4 text-[0.95rem] max-[720px]:flex-wrap max-[720px]:justify-start"
+      >
         <a href="/">Home</a>
         <a href="/about">About</a>
         <a href="/tags">Tags</a>
       </nav>
     </header>
-    <main class={mainClass}>
+    <main class:list={mainClasses}>
       <slot />
     </main>
-    <footer>
+    <footer
+      class="mx-auto mb-10 max-w-[76ch] px-6 text-center text-[0.85rem] text-[var(--muted)]"
+    >
       <span>Quiet notes for long-form thinking.</span>
     </footer>
   </body>
 </html>
-
-<style>
-  main {
-    margin: 0 auto;
-    max-width: 76ch;
-    padding: 3.5rem 1.5rem 3.2rem;
-    background: var(--bg-paper);
-    min-height: 70vh;
-    flex: 1;
-  }
-
-  .main--post {
-    max-width: none;
-    background: transparent;
-    padding: 1.5rem 0 3.2rem;
-  }
-
-  .main--home {
-    max-width: none;
-    background: transparent;
-    padding: 1.5rem 0 3.2rem;
-  }
-
-  .main--page {
-    max-width: none;
-    padding: 1.5rem 0 3.2rem;
-  }
-
-  .site-header {
-    width: 100%;
-    max-width: none;
-    margin: 0;
-    padding: 1.2rem 2rem 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    gap: 1rem;
-  }
-
-  .site-brand {
-    padding-bottom: 1rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.06rem;
-    text-align: left;
-  }
-
-  .site-title {
-    font-size: 1.35rem;
-    font-weight: 600;
-    letter-spacing: 0.01em;
-  }
-
-  .site-tagline {
-    font-size: 0.95rem;
-    color: var(--muted);
-  }
-
-  .site-title-link {
-    font-size: 1.8rem;
-    font-weight: 600;
-    letter-spacing: 0.01em;
-  }
-
-  .site-nav {
-    display: flex;
-    gap: 1rem;
-    font-size: 0.95rem;
-    justify-content: flex-end;
-  }
-
-  header .logo {
-    font-weight: 600;
-    letter-spacing: 0.01em;
-  }
-
-  footer {
-    max-width: 76ch;
-    margin: 0 auto 2.5rem;
-    padding: 0 1.5rem;
-    color: var(--muted);
-    font-size: 0.85rem;
-    text-align: center;
-  }
-
-  @media (max-width: 1024px) {
-    .main--home {
-      margin: 0;
-    }
-  }
-
-  @media (max-width: 720px) {
-    main {
-      padding: 2.5rem 1.25rem 2.8rem;
-    }
-
-    .main--post {
-      padding: 2.5rem 0 2.8rem;
-    }
-
-    .main--home {
-      padding: 1.2rem 0 2.8rem;
-    }
-
-    .main--page {
-      padding: 1.2rem 0 2.8rem;
-    }
-
-    .site-header {
-      padding: 1.25rem 1.5rem 0;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 0.75rem;
-    }
-
-    .site-nav {
-      flex-wrap: wrap;
-      justify-content: flex-start;
-    }
-
-    .site-brand {
-      text-align: left;
-    }
-
-    .site-title-link {
-      justify-self: start;
-    }
-  }
-</style>

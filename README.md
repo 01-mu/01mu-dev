@@ -30,7 +30,8 @@ direnv allow
 bun astro check
 ```
 
-## Deployment (Cloudflare Pages GUI)
+## Deployment
+- Cloudflare Pages is managed by Terraform under `infra/cloudflare`.
 - Build command: `bun run build`
 - Output directory: `dist`
 - Production branch: `main`

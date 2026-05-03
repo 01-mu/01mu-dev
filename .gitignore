@@ -18,6 +18,8 @@ e2e/snapshots/
 e2e/*.spec.ts-snapshots/
 test-results/
 
+# Terraform
+.terraform/
 
 # environment variables
 .env

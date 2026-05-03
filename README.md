@@ -12,8 +12,8 @@ minimal so the writing stays quiet and readable.
 ## Local Development
 ```bash
 nix --extra-experimental-features 'nix-command flakes' develop
-pnpm install
-pnpm run dev
+bun install
+bun run dev
 ```
 Optional (direnv):
 ```bash
@@ -27,20 +27,20 @@ direnv allow
 
 ## Checks
 ```bash
-pnpm astro check
+bun astro check
 ```
 
 ## Visual Snapshots (Playwright)
 ```bash
-pnpm test:e2e:update
+bun run test:e2e:update
 ```
 - Snapshots are saved under `e2e/snapshots/`.
 
 ## Deployment (Cloudflare Pages GUI)
-- Build command: `pnpm run build`
+- Build command: `bun run build`
 - Output directory: `dist`
 - Production branch: `main`
-- Node version: 20 (match the Nix dev shell).
+- Bun version: match `package.json`.
 
 ## Domain Notes
 - Domain: `01-mu.dev`

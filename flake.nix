@@ -18,11 +18,10 @@
         {
           default = pkgs.mkShell {
             packages = [
-              pkgs.nodejs_20
-              pkgs.pnpm
+              pkgs.bun
             ];
             shellHook = ''
-              echo "Dev shell ready. Try: pnpm install"
+              echo "Dev shell ready. Try: bun install"
             '';
           };
         });

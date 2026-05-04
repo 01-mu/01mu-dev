@@ -32,7 +32,7 @@ bun astro check
 
 ## Deployment
 - Cloudflare Pages is managed by Terraform under `infra/cloudflare`.
-- Build command: `bun run build`
+- Build command: `bun install --frozen-lockfile && bun run build`
 - Output directory: `dist`
 - Production branch: `main`
 - Bun version: match `package.json`.

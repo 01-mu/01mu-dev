@@ -1,5 +1,5 @@
 {
-  description = "01mu-dev development shell";
+  description = "blog development shell";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";

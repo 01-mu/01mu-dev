@@ -6,6 +6,8 @@ const siteTitle = "mu log";
 const siteTagline = "Designing systems from nothing(mu / 無).";
 const pageTitle = title ? `${title} · ${siteTitle}` : siteTitle;
 const pageDescription = description ?? siteTagline;
+const pageUrl = Astro.url.href;
+const ogType = title ? "article" : "website";
 const bodyClasses = [
   "m-0 flex min-h-screen flex-col",
   "[&_a]:border-b [&_a]:border-transparent [&_a]:text-inherit [&_a]:no-underline [&_a]:transition-[border-color] [&_a]:duration-150 [&_a:hover]:border-border [&_a:focus-visible]:outline-2 [&_a:focus-visible]:outline-offset-3 [&_a:focus-visible]:outline-accent",
@@ -43,8 +45,18 @@ const mainClasses = [
     <meta name="description" content={pageDescription} />
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={pageDescription} />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:url" content={pageUrl} />
+    <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content={pageTitle} />
     <meta name="twitter:description" content={pageDescription} />
+    <link rel="canonical" href={pageUrl} />
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title="mu log"
+      href="/rss.xml"
+    />
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
